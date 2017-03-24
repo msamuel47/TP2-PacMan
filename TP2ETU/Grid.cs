@@ -14,7 +14,7 @@ namespace TP2PROF
         /// Grille logique du jeu.
         /// Tableau 2D de PacmanElement
         /// </summary>
-        private PacManElement[,] elements = null;
+        private PacmanElement[,] elements = null;
 
         //<SamuelV>
         /// <summary>
@@ -158,6 +158,7 @@ namespace TP2PROF
             }
             return retval;
         }
+        //</SamuelV>
 
         /// <summary>
         /// Retourne l'élément à la position spécifiée
