@@ -9,21 +9,27 @@ namespace TP2PROF
 {
   public class Ghost
   {
-    /// <summary>
-    /// Position du fantôme
-    /// </summary>
-
-    /// <summary>
-    /// Accesseur de la position en colonne
-    /// Propriété C#
-    /// </summary>
-
-    /// <summary>
-    /// Accesseur de la position en ligne
-    /// Propriété C#
-    /// </summary>
-
-
+       //<nDionne>
+       /// <summary>
+        /// Position du fantôme
+        /// </summary>
+       public Vector2i position;
+       /// <summary>
+        /// Accesseur de la position en colonne
+        /// Propriété C#
+        /// </summary>
+       public int Column
+        {
+            get { return position.X; }
+        }
+       /// <summary>
+       /// Accesseur de la position en ligne
+       /// Propriété C#
+       /// </summary>
+       public int Row
+        {
+            get { return position.Y; }
+        }
     /// <summary>
     /// Indique si le fantôme a été mangé par le pacman sans être
     /// retourné dans sa cage pour se régénérer
