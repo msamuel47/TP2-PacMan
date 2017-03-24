@@ -72,7 +72,7 @@ namespace TP2PROF
       {
           if (direction == Direction.East)
           {
-              if( Column - 1 == )
+              if( Column - 1 == 1)
           }
       }
 
