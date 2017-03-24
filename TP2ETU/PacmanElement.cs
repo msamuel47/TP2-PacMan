@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace TP2PROF
 {
-  // ppoulin
-  // Complétez la déclaration du type énuméré PacmanElement
-
+    // ppoulin
+    
+  
+    public enum PacManElement
+    {
+        Ghost,
+        GhostCage,
+        None,
+        Pacman,
+        Pill,
+        SuperPill,
+        Wall,
+    }
 
 
 }
