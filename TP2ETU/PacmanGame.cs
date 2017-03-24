@@ -34,7 +34,7 @@ namespace TP2PROF
     /// <summary>
     /// La grille principale de jeu. Elle est créée dans la méthode LoadGrid
     /// </summary>
-    // A COMPLETER
+    public Grid grid = null;
 
 
     /// <summary>
@@ -209,34 +209,34 @@ namespace TP2PROF
     {
       // PPOULIN
       // A DECOMMENTER LORSQUE LES CLASSES AURONT ÉTÉ CODÉES
-      //for (int row = 0; row < grid.Height; row++)
-      //{
-      //  for (int col = 0; col < grid.Width; col++)
-      //  {
-      //    // Pastille régulière
-      //    if (grid.GetGridElementAt(row, col)==PacmanElement.Pill)                  
-      //    {
-      //      smallPillShape.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
-      //      window.Draw(smallPillShape);     
-      //    }
-      //    // Super pastille
-      //    else if (grid.GetGridElementAt(row, col) == PacmanElement.SuperPill)
-      //    {
+      for (int row = 0; row < grid.Height; row++)
+      {
+        for (int col = 0; col < grid.Width; col++)
+        {
+          // Pastille régulière
+          if (grid.GetGridElementAt(row, col)==PacmanElement.Pill)                  
+          {
+            smallPillShape.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
+            window.Draw(smallPillShape);     
+          }
+          // Super pastille
+          else if (grid.GetGridElementAt(row, col) == PacmanElement.SuperPill)
+          {
 
-      //      superPillShape.Radius =  SUPER_PILL_RADIUS;
-      //      superPillShape.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
-      //      window.Draw(superPillShape);
-      //    }
-      //    // Mur
-      //    else if (grid.GetGridElementAt(row, col) == PacmanElement.Wall)
-      //    {
-      //      wallSprite.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
-      //      window.Draw(wallSprite);
-      //    }
-      //  }
-      //}
+            superPillShape.Radius =  SUPER_PILL_RADIUS;
+            superPillShape.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
+            window.Draw(superPillShape);
+          }
+          // Mur
+          else if (grid.GetGridElementAt(row, col) == PacmanElement.Wall)
+          {
+            wallSprite.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
+            window.Draw(wallSprite);
+          }
+        }
+      }
 
-      //// Les 4 fantômes
+      // Les 4 fantômes
       //for (int i = 0; i < NB_GHOSTS; i++)
       //{
       //  if (ghosts[i] != null)

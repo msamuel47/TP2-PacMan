@@ -93,10 +93,6 @@ namespace TP2PROF
         /// <summary>
         /// Constructeur sans paramètre
         /// </summary>
-        public Grid()
-        {
-            
-        }
         // A compléter
         /// <summary>
         /// Charge un niveau à partir d'une chaine de caractères en mémoire.
