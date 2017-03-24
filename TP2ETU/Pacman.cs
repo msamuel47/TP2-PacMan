@@ -63,12 +63,19 @@ namespace TP2PROF
       pacmanSprite.Origin = new Vector2f(pacmanTexture.Size.X/2, pacmanTexture.Size.Y / 2);
     }
 
-    /// <summary>
-    /// Déplace le pacman selon une direction donnée.
-    /// </summary>
-    /// <param name="direction">Direction dans laquelle on veut déplacer le pacman</param>
-    /// <param name="grid">Grille de référence. Utilisée pour ne pas que le pacman passe au travers des murs</param>
-    // A COMPLETER MÉTHODE MOVE
+      /// <summary>
+      /// Déplace le pacman selon une direction donnée.
+      /// </summary>
+      /// <param name="direction">Direction dans laquelle on veut déplacer le pacman</param>
+      /// <param name="grid">Grille de référence. Utilisée pour ne pas que le pacman passe au travers des murs</param>
+      public void Move(Direction direction, Grid grid)
+      {
+          if (direction == Direction.East)
+          {
+              if( Column - 1 == )
+          }
+      }
+
 
 
 
@@ -79,12 +86,10 @@ namespace TP2PROF
     /// <param name="window">Fenêtre de rendu</param>
     public void Draw(RenderWindow window)
     {
-      // ppoulin
-      // A décommenter lorsqu'il sera possible d'accéder aux propriétés Column et Row
-      // du pacman  
-      // pacmanSprite.Position = new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH* Column , 
-      //                                      PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT*Row )+ pacmanSprite.Origin;
-      window.Draw(pacmanSprite);
+
+       pacmanSprite.Position = new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH * Column,
+                                            PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT * Row) + pacmanSprite.Origin;
+            window.Draw(pacmanSprite);
     }
   }
 }
