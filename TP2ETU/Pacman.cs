@@ -9,19 +9,30 @@ namespace TP2PROF
 {
   public class Pacman
   {
-    /// <summary>
-    /// Position du pacman
-    /// </summary>
+      //<SamuelV>
+      /// <summary>
+      /// Position du pacman
+      private Vector2i position;
 
-    /// <summary>
-    /// Accesseur de la position en colonne
-    /// Propriété C#
-    /// </summary>
+      /// </summary>
 
-    /// <summary>
-    /// Accesseur de la position en ligne
-    /// Propriété C#
-    /// </summary>
+      /// <summary>
+      /// Accesseur de la position en colonne
+      /// Propriété C#
+      /// </summary>
+      public int Column
+      {
+            get { return position.X; }
+      }
+
+      /// <summary>
+      /// Accesseur de la position en ligne
+      /// Propriété C#
+      /// </summary>
+      public int Row
+      {
+          get { return position.Y; }
+      }
 
 
     
