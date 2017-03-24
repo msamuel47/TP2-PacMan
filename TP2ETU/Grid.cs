@@ -93,10 +93,6 @@ namespace TP2PROF
         /// <summary>
         /// Constructeur sans paramètre
         /// </summary>
-        public Grid()
-        {
-            
-        }
         // A compléter
         /// <summary>
         /// Charge un niveau à partir d'une chaine de caractères en mémoire.
@@ -163,14 +159,17 @@ namespace TP2PROF
             return retval;
         }
         //</SamuelV>
-
+        
         /// <summary>
         /// Retourne l'élément à la position spécifiée
         /// </summary>
         /// <param name="row">La ligne</param>
         /// <param name="column">La colonne</param>
         /// <returns>L'élément à la position spécifiée</returns>
-        // A compléter
+        public PacmanElement GetGridElementAt(int row,int column)
+        {
+            return elements[row, column];
+        }
 
 
         /// <summary>
