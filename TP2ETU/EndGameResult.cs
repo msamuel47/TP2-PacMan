@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TP2PROF
 {
-  public enum EndGameResult
+    /// <summary>
+    /// Énumération des différents résultats possibles lors de la vérification de la fin de partie.
+    /// </summary>
+    public enum EndGameResult
   {
     NotFinished,
     Win,
