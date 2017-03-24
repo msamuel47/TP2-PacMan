@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace TP2PROF
 {
-  // ppoulin
-  // Complétez la déclaration du type énuméré Direction  
-
-
+    //<nDionne>
+    /// <summary>
+    /// Énumération des différentes directions possibles pour le mouvement des fantômes.
+    /// </summary>
+    public enum Direction
+    {
+        East,
+        None,
+        North,
+        South,
+        Undefined,
+        West
+    }
+    //</nDionne>
 }

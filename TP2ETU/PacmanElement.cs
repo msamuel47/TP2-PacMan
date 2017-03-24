@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace TP2PROF
 {
-    // ppoulin
-    
-  
-    public enum PacManElement
+    //<nDionne>
+    /// <summary>
+    /// Énumération des différents éléments possibles sur une carte de jeu Pacman.
+    /// </summary>
+    public enum PacmanElement
     {
         Ghost,
         GhostCage,
@@ -17,8 +18,7 @@ namespace TP2PROF
         Pacman,
         Pill,
         SuperPill,
-        Wall,
+        Wall
     }
-
-
+    //</nDionne>
 }
