@@ -14,7 +14,7 @@ namespace TP2PROF
         /// Grille logique du jeu.
         /// Tableau 2D de PacmanElement
         /// </summary>
-        private PacManElement[,] elements = null;
+        private pacmanElement[,] elements = null;
 
         //<SamuelV>
         /// <summary>
