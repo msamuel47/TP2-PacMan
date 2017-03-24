@@ -11,20 +11,20 @@ namespace TP2Tests
            /// <summary>
            /// Teste si toutes les propriétés ont été correctement initialisées
            /// </summary>
-    [TestMethod]
-    public void TestConstructeur01()
-        {
-            // Mise en place des données
-            // Appel de la méthode à tester
-            Grid grid = new Grid();
+    //[TestMethod]
+    //public void TestConstructeur01()
+    //    {
+    //        // Mise en place des données
+    //        // Appel de la méthode à tester
+    //        Grid grid = new Grid();
 
-            // Validation des résultats
-            Assert.AreEqual(-1, grid.Width);
-            Assert.AreEqual(-1, grid.Height);
-            Assert.AreEqual(-1, grid.GhostCagePositionColumn);
-            Assert.AreEqual(-1, grid.GhostCagePositionRow);
-            // Clean-up
-        }
+    //        // Validation des résultats
+    //        Assert.AreEqual(-1, grid.Width);
+    //        Assert.AreEqual(-1, grid.Height);
+    //        Assert.AreEqual(-1, grid.GhostCagePositionColumn);
+    //        Assert.AreEqual(-1, grid.GhostCagePositionRow);
+    //        // Clean-up
+    //    }
 
         //    /// <summary>
         //    /// Teste si le chargement d'un fichier vide échoue

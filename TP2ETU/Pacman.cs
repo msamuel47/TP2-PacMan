@@ -47,10 +47,17 @@ namespace TP2PROF
     /// <param name="column">Colonne de départ du pacman</param>
     public Pacman(int row, int column)
     {
-
-      // Affectation de la position du pacman 
-      // Ne pas oublier de lancer une exception si les paramètres sont invalides
-
+        if (row <= 0 || column <= 0)
+        {
+            throw new FormatException("erreur avec la position de pacman");
+          
+        }
+            position.Y = row;
+            position.X = column;
+        
+        
+        // Ne pas oublier de lancer une exception si les paramètres sont invalides
+        
       // Initialisation des propriétés SFML
       pacmanSprite = new Sprite(pacmanTexture);
       pacmanSprite.Origin = new Vector2f(pacmanTexture.Size.X/2, pacmanTexture.Size.Y / 2);
