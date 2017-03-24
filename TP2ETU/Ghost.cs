@@ -9,53 +9,51 @@ namespace TP2PROF
 {
   public class Ghost
   {
-        //fsaasfsa
-       //<nDionne>
-       /// <summary>
+    //fsaasfsa
+    //<nDionne>
+    /// <summary>
         /// Position du fantôme
         /// </summary>
-       public Vector2i position;
-       /// <summary>
+    public Vector2i position;
+    /// <summary>
         /// Accesseur de la position en colonne
         /// Propriété C#
         /// </summary>
-       public int Column
+    public int Column
         {
             get { return position.X; }
         }
-       /// <summary>
+    /// <summary>
        /// Accesseur de la position en ligne
        /// Propriété C#
        /// </summary>
-       public int Row
+    public int Row
         {
             get { return position.Y; }
         }
     /// <summary>
-    /// Indique si le fantôme a été mangé par le pacman sans être
-    /// retourné dans sa cage pour se régénérer
-    /// </summary>
-
-
+        /// Indique si le fantôme a été mangé par le pacman sans être
+        /// retourné dans sa cage pour se régénérer
+        /// </summary>
+    public bool isWeak;
     /// <summary>
     /// Accesseur de la propriété isWeak
     /// Propriété C#
     /// </summary>
-
-
+    public bool IsWeak
+        { 
+            get { return isWeak; }
+        }
     // Propriétés SFML pour l'affichage
     Texture ghostTextureNormal = new Texture("Assets/Ghost.bmp");
     Texture ghostTextureScared = new Texture("Assets/GhostScared.bmp");
     Texture ghostTextureWeak = new Texture("Assets/GhostWeak.bmp");
     Sprite ghostSprite = null;
-
-
     /// <summary>
     /// Identifiant du fantôme (entre 0 et 3 inclusivement) pour déterminer
     /// la couleur par défaut du fantôme dans la méthode Draw.
     /// </summary>
     private int ghostId = 0;
-
     /// <summary>
     /// Délai pour que le fantôme se mette en mouvement au début
     /// </summary>
