@@ -9,6 +9,7 @@ namespace TP2PROF
 {
   public class Ghost
   {
+        //fsaasfsa
        //<nDionne>
        /// <summary>
         /// Position du fantôme
