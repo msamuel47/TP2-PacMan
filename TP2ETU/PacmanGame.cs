@@ -207,34 +207,34 @@ namespace TP2PROF
     /// <param name="window">Le contexte de rendu</param>
     public void Draw(RenderWindow window)
     {
-      // PPOULIN
-      // A DECOMMENTER LORSQUE LES CLASSES AURONT ÉTÉ CODÉES
-      for (int row = 0; row < grid.Height; row++)
-      {
-        for (int col = 0; col < grid.Width; col++)
-        {
-          // Pastille régulière
-          if (grid.GetGridElementAt(row, col)==PacmanElement.Pill)                  
-          {
-            smallPillShape.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
-            window.Draw(smallPillShape);     
-          }
-          // Super pastille
-          else if (grid.GetGridElementAt(row, col) == PacmanElement.SuperPill)
-          {
+    ////        // PPOULIN
+    ////        // A DECOMMENTER LORSQUE LES CLASSES AURONT ÉTÉ CODÉES
+    ////        for (int row = 0; row < grid.Height; row++)
+    ////        {
+    ////            for (int col = 0; col < grid.Width; col++)
+    ////            {
+    ////                Pastille régulière
+    ////              if (grid.GetGridElementAt(row, col) == PacmanElement.Pill)
+    ////                {
+    ////                    smallPillShape.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
+    ////        window.Draw(smallPillShape);     
+    ////      }
+    //      // Super pastille
+    //      else if (grid.GetGridElementAt(row, col) == PacmanElement.SuperPill)
+    //      {
 
-            superPillShape.Radius =  SUPER_PILL_RADIUS;
-            superPillShape.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
-            window.Draw(superPillShape);
-          }
-          // Mur
-          else if (grid.GetGridElementAt(row, col) == PacmanElement.Wall)
-          {
-            wallSprite.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
-            window.Draw(wallSprite);
-          }
-        }
-      }
+    //        superPillShape.Radius =  SUPER_PILL_RADIUS;
+    //        superPillShape.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
+    //        window.Draw(superPillShape);
+    //      }
+    //      // Mur
+    //      else if (grid.GetGridElementAt(row, col) == PacmanElement.Wall)
+    //      {
+    //        wallSprite.Position = new Vector2f(col * DEFAULT_GAME_ELEMENT_WIDTH, row * DEFAULT_GAME_ELEMENT_HEIGHT);
+    //        window.Draw(wallSprite);
+    //      }
+    //    }
+     }
 
       // Les 4 fantômes
       //for (int i = 0; i < NB_GHOSTS; i++)
@@ -249,4 +249,3 @@ namespace TP2PROF
         
     }
   }
-}

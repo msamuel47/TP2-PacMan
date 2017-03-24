@@ -159,14 +159,17 @@ namespace TP2PROF
             return retval;
         }
         //</SamuelV>
-
+        
         /// <summary>
         /// Retourne l'élément à la position spécifiée
         /// </summary>
         /// <param name="row">La ligne</param>
         /// <param name="column">La colonne</param>
         /// <returns>L'élément à la position spécifiée</returns>
-        // A compléter
+        public PacmanElement GetGridElementAt(int row,int column)
+        {
+            return elements[row, column];
+        }
 
 
         /// <summary>
