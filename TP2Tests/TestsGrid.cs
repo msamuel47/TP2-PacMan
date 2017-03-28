@@ -7,24 +7,24 @@ namespace TP2Tests
   public class TestsGrid
   {
         // ppoulin
-        
-           /// <summary>
-           /// Teste si toutes les propriétés ont été correctement initialisées
-           /// </summary>
-    //[TestMethod]
-    //public void TestConstructeur01()
-    //    {
-    //        // Mise en place des données
-    //        // Appel de la méthode à tester
-    //        Grid grid = new Grid();
 
-    //        // Validation des résultats
-    //        Assert.AreEqual(-1, grid.Width);
-    //        Assert.AreEqual(-1, grid.Height);
-    //        Assert.AreEqual(-1, grid.GhostCagePositionColumn);
-    //        Assert.AreEqual(-1, grid.GhostCagePositionRow);
-    //        // Clean-up
-    //    }
+        /// <summary>
+        /// Teste si toutes les propriétés ont été correctement initialisées
+        /// </summary>
+        [TestMethod]
+        public void TestConstructeur01()
+        {
+            // Mise en place des données
+            // Appel de la méthode à tester
+            Grid grid = new Grid();
+
+            // Validation des résultats
+            Assert.AreEqual(-1, grid.Width);
+            Assert.AreEqual(-1, grid.Height);
+            Assert.AreEqual(-1, grid.GhostCagePositionColumn);
+            Assert.AreEqual(-1, grid.GhostCagePositionRow);
+            // Clean-up
+        }
 
         //    /// <summary>
         //    /// Teste si le chargement d'un fichier vide échoue
@@ -378,14 +378,16 @@ namespace TP2Tests
     public void TestLoadValidContent01()
     {
       // Mise en place des données
-      
+      Grid testGrid01 = new Grid();
+        bool valide;
       // Appel de la méthode à tester
       
+        valide = testGrid01.LoadFromMemory(VALID_LEVEL_01);
 
-      // Validation des résultats
-      
+        // Validation des résultats
+        Assert.IsTrue(valide);
 
-      // Clean-up
+        // Clean-up
     }
 
     /// <summary>
@@ -466,13 +468,15 @@ namespace TP2Tests
     public void TestGetElementAt04()
     {
       // Mise en place des données
-      
-      // Appel de la méthode à tester
-      
-      // Validation des résultats
-      
+      Grid testGrid04 = new Grid();
+            //Chargement d'un niveau valide
+        testGrid04.LoadFromMemory(VALID_LEVEL_01);
+        // Appel de la méthode à tester
+        testGrid04.GetGridElementAt(20, 22);
+        // Validation des résultats
 
-      // Clean-up
+
+        // Clean-up
     }
 
 
