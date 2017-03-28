@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using SFML.System;
@@ -23,6 +25,7 @@ namespace TP2PROF
       public int Column
       {
             get { return position.X; }
+            set { position.X = value; }
       }
 
       /// <summary>
@@ -32,6 +35,7 @@ namespace TP2PROF
       public int Row
       {
           get { return position.Y; }
+          set { position.Y = value; }
       }
 
 
@@ -49,7 +53,7 @@ namespace TP2PROF
     {
         if (row <= 0 || column <= 0)
         {
-            throw new FormatException("erreur avec la position de pacman");
+            throw new FormatException("Les paramètres entrés dans le constructeur Pacman est invalide ...");
           
         }
             position.Y = row;
@@ -70,9 +74,49 @@ namespace TP2PROF
       /// <param name="grid">Grille de référence. Utilisée pour ne pas que le pacman passe au travers des murs</param>
       public void Move(Direction direction, Grid grid)
       {
-          if (direction == Direction.East)
+          if (direction == Direction.West)
           {
-              if( Column - 1 == 1)
+              if (Column - 1 < 0)
+              {
+                  if (grid.GetGridElementAt(Row, Column - 1) != PacmanElement.Wall)
+                  {
+                      Column--;
+                  }
+              }
+              if (direction == Direction.East)
+              {
+                  if (Column < grid.Width - 1)
+                  {
+                      if (grid.GetGridElementAt(Row, Column + 1) != PacmanElement.Wall)
+                      {
+                          Column++;
+                      }
+                  }
+              }
+              if (direction == Direction.North)
+              {
+                  if (Row - 1 < 0)
+                  {
+                      if (grid.GetGridElementAt(Row - 1, Column) != PacmanElement.Wall)
+                      {
+                          Row--;
+                      }
+                  }
+              }
+              if (direction == Direction.South) 
+              {
+                  if (Row < grid.Width - 1)
+                  {
+                      if (grid.GetGridElementAt(Row + 1, Column) != PacmanElement.Wall)
+                      {
+                          Row++;
+                      }
+                  }
+              }
+              if (direction == Direction.Undefined)
+              {
+               
+              }
           }
       }
 
