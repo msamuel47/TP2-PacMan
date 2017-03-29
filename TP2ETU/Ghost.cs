@@ -22,6 +22,13 @@ namespace TP2PROF
     public int Column
         {
             get { return position.X; }
+            set
+            {
+                if (value >= 0)
+                {
+                    position.X = value;
+                }
+            }
         }
     /// <summary>
        /// Accesseur de la position en ligne
@@ -30,6 +37,13 @@ namespace TP2PROF
     public int Row
         {
             get { return position.Y; }
+            set
+            {
+                if (value >= 0)
+                {
+                    position.Y = value;
+                }
+            }
         }
     /// <summary>
         /// Indique si le fantôme a été mangé par le pacman sans être
@@ -163,9 +177,30 @@ namespace TP2PROF
     /// <param name="isSuperPillActive"></param>
     public void Update(Grid grid, Vector2i pacmanPosition, bool isSuperPillActive)
     {
-      // ppoulin
-      // A compléter 
-
+            if (pacmanPosition == position&&isSuperPillActive==true)
+            {
+                isWeak = true;
+            }
+            if(isSuperPillActive==false)
+            {
+                Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, pacmanPosition.X, pacmanPosition.Y);
+                if (firstDirection == Direction.East)
+                {
+                    Column++;
+                }
+                else if (firstDirection == Direction.North)
+                {
+                    Row++;
+                }
+                else if (firstDirection == Direction.South)
+                {
+                    Row--;
+                }
+                else if (firstDirection == Direction.West)
+                {
+                    Column--;
+                }
+            }            
     }
   }
 }

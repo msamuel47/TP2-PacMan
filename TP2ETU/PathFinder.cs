@@ -18,7 +18,7 @@ namespace TP2PROF
         /// <param name="fromX">La position du pacman en colonne</param>
         /// <param name="fromY">La position du pacman en ligne</param>
         /// <returns>Le tableau initialisé correctement</returns>
-        static int[,] InitCosts(Grid aGrid, int fromX, int fromY)
+        public static int[,] InitCosts(Grid aGrid, int fromX, int fromY)
         {
             for (int i = 0 ; i <)
             return null;
@@ -36,7 +36,7 @@ namespace TP2PROF
         /// <returns>La direction dans laquelle on doit aller. Direction.None si l'on
         /// est déjà rendu ou Direction.Undefined s'il est impossible d'atteindre la cible</returns>
         /// </summary>
-        static Direction FindShortestPath(Grid aGrid, int fromX, int fromY, int toX, int toY)
+        public static Direction FindShortestPath(Grid aGrid, int fromX, int fromY, int toX, int toY)
         {
             int[,] initialCosts = InitCosts(aGrid, fromX, fromY);
 
@@ -57,7 +57,7 @@ namespace TP2PROF
         /// que la position (toX, toY) est celle du pacman.</remark>
         /// <remark>Cette méthode est récursive</remark>
         /// </summary>
-        static void ComputeCosts(Grid aGrid, int fromX, int fromY, int toX, int toY, int[,] costs)
+        public static void ComputeCosts(Grid aGrid, int fromX, int fromY, int toX, int toY, int[,] costs)
         {
 
         }
@@ -74,7 +74,7 @@ namespace TP2PROF
         /// </summary>
         /// <returns>La direction dans laquelle on doit aller. Direction.None si l'on
         /// est déjà rendu ou Direction.Undefined s'il est impossible d'atteindre la cible</returns>
-        static Direction RecurseFindDirection(int[,] costs, int targetX, int targetY, int fromX, int fromY)
+        public static Direction RecurseFindDirection(int[,] costs, int targetX, int targetY, int fromX, int fromY)
         {
             //Déplacement vers le sud...
             //On vérifie si la case au nord ne rencontre pas de murs et fait partie des dimensions de la grille du jeu.
