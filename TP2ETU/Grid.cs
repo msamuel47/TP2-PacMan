@@ -202,7 +202,7 @@ namespace TP2PROF
         /// <returns>L'élément à la position spécifiée</returns>
         public PacmanElement GetGridElementAt(int row,int column)
         {
-            if (!Enumerable.Range(0, Width).Contains(column) || !Enumerable.Range(0, Height).Contains(row))
+            if (!Enumerable.Range(0, Width+1).Contains(column) || !Enumerable.Range(0, Height+1).Contains(row))
             {
                 throw new ArgumentOutOfRangeException("Les paramètres sont en dehors de la grille de jeu");
             }
