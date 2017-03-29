@@ -11,9 +11,11 @@ namespace TP2PROF
 {
   public class PacmanGame
   {
+    //<nDionne>
+    #region Propriétés
     /// <summary>
-    /// Nombre de cases en largeur dans le jeu du Pacman
-    /// </summary>
+        /// Nombre de cases en largeur dans le jeu du Pacman
+        /// </summary>
     public const int DEFAULT_GAME_WIDTH = 21;
 
     /// <summary>
@@ -35,22 +37,18 @@ namespace TP2PROF
     /// La grille principale de jeu. Elle est créée dans la méthode LoadGrid
     /// </summary>
     public Grid grid = null;
-
-
     /// <summary>
     /// Nombre de fantômes présents dans le jeu
     /// </summary>
-    // A COMPLETER
-
+    public const int NB_GHOSTS = 4;
     /// <summary>
     /// Les 4 fantômes du jeu
     /// </summary>
-    // A COMPLETER
-
+    private Ghost[] ghosts;
     /// <summary>
     /// Le pacman du jeu
     /// </summary>
-    // A COMPLETER
+    private Pacman pacman;
 
     /// <summary>
     /// Durée d'activation d'une superpastille (en secondes)
@@ -62,8 +60,8 @@ namespace TP2PROF
     /// Accesseur permettant de savoir si une super pastille est active
     /// Propriété C#
     /// </summary>
-    // A COMPLETER
 
+        
     // Propriétés SFML pour l'affichage des pastilles et super-pastilles
     const float SMALL_PILL_RADIUS = DEFAULT_GAME_ELEMENT_HEIGHT/8;
     const float SUPER_PILL_RADIUS = 2 * SMALL_PILL_RADIUS;
@@ -73,13 +71,15 @@ namespace TP2PROF
     // Propriétés SFML pour l'affichage du labyrinthe
     Texture wallTexture = new Texture("Assets/Wall.bmp");
     Sprite wallSprite = null;
-
+    #endregion
+   
     /// <summary>
     /// Constructeur du jeu de Pacman
     /// </summary>
     public PacmanGame()
     {
-      // A COMPLETER   
+           
+            
       
 
 
