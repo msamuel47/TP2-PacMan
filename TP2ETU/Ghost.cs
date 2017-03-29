@@ -14,7 +14,7 @@ namespace TP2PROF
     /// <summary>
         /// Position du fantôme
         /// </summary>
-    public Vector2i position;
+    private Vector2i position;
     /// <summary>
         /// Accesseur de la position en colonne
         /// Propriété C#
@@ -49,7 +49,7 @@ namespace TP2PROF
         /// Indique si le fantôme a été mangé par le pacman sans être
         /// retourné dans sa cage pour se régénérer
         /// </summary>
-    public bool isWeak;
+    private bool isWeak;
     /// <summary>
     /// Accesseur de la propriété isWeak
     /// Propriété C#
@@ -125,19 +125,19 @@ namespace TP2PROF
         {
             if (direction == Direction.East&&grid.GetGridElementAt(Row,Column+1)!=PacmanElement.Wall)
             {
-                position.X++;
+                Column++;
             }
             else if (direction == Direction.West && grid.GetGridElementAt(Row, Column - 1) != PacmanElement.Wall)
             {
-                position.X--;
+                Column--;
             }
             else if (direction == Direction.North && grid.GetGridElementAt(Row - 1, Column) != PacmanElement.Wall)
             {
-                position.Y--;
+                Row--;
             }
             else if (direction == Direction.South && grid.GetGridElementAt(Row + 1, Column) != PacmanElement.Wall)
             {
-                position.Y++;
+                Row++;
             }
         }
     /// <summary>
@@ -184,22 +184,7 @@ namespace TP2PROF
             if(isSuperPillActive==false)
             {
                 Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, pacmanPosition.X, pacmanPosition.Y);
-                if (firstDirection == Direction.East)
-                {
-                    Column++;
-                }
-                else if (firstDirection == Direction.North)
-                {
-                    Row++;
-                }
-                else if (firstDirection == Direction.South)
-                {
-                    Row--;
-                }
-                else if (firstDirection == Direction.West)
-                {
-                    Column--;
-                }
+                Move(firstDirection, grid);
             }            
     }
   }
