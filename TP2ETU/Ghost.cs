@@ -81,9 +81,10 @@ namespace TP2PROF
     /// <summary>
     /// Compteur du nombre d'instances de fantômes
     /// </summary>
-    static int nbGhostCreated = 0;
+    public static int nbGhostCreated = 0;
     static Random rnd = new Random();
     #endregion
+
     /// <summary>
     /// Constructeur d'une instance de Ghost.
     /// </summary>
