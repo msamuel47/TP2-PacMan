@@ -36,7 +36,7 @@ namespace TP2Tests
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1";
     #region MANDAT1
     
-
+        //<SamuelV>
     /// <summary>
     /// Test de l'initialisation des coûts.
     /// Vous devez vous assurer que la méthode InitCost initialise
@@ -47,14 +47,17 @@ namespace TP2Tests
     public void TestInitCost_01()
     {
       // Mise en place des données
-      
-
-      // Appel de la méthode à tester
-      
-      // Validations
-      
+      Grid testGrid = new Grid();
+        testGrid.LoadFromMemory(VALID_LEVEL_01);
+        int[,] testCost = null;
+        bool valide = true;
+        // Appel de la méthode à tester
+        testCost = PathFinder.InitCosts(testGrid, 0, 0);
+       
+        // Validations
+        Assert.IsTrue(testCost[0,0] == 0);
     }
-
+        //</SamuelV>
     /// <summary>
     /// Test de calcul des coûts dans la grille de base.
     /// Vous devez vous assurer que le calcul des coûts se
