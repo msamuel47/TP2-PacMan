@@ -431,8 +431,8 @@ namespace TP2Tests
         PacmanElement superPill3 = testGetElementAt02.GetGridElementAt(19, 2);
         // Validation des résultats
         Assert.AreEqual(PacmanElement.SuperPill,superPill1);
-            Assert.AreEqual(PacmanElement.SuperPill, superPill2);
-            Assert.AreEqual(PacmanElement.SuperPill, superPill3);
+        Assert.AreEqual(PacmanElement.SuperPill, superPill2);
+        Assert.AreEqual(PacmanElement.SuperPill, superPill3);
 
 
 
