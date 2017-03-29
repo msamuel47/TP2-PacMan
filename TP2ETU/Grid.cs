@@ -202,7 +202,7 @@ namespace TP2PROF
         /// <returns>L'élément à la position spécifiée</returns>
         public PacmanElement GetGridElementAt(int row,int column)
         {
-            if (!Enumerable.Range(0, Width+1).Contains(column) || !Enumerable.Range(0, Height+1).Contains(row))
+            if (row < 0 || row > PacmanGame.DEFAULT_GAME_HEIGHT || column < 0 || column > PacmanGame.DEFAULT_GAME_WIDTH)
             {
                 throw new ArgumentOutOfRangeException("Les paramètres sont en dehors de la grille de jeu");
             }
@@ -213,7 +213,7 @@ namespace TP2PROF
 
         public void SetGridElementAt(int row, int column, int number)
         {
-            if (row<0||row>PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT||column<0||column>PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH)
+            if (row<0||row>PacmanGame.DEFAULT_GAME_HEIGHT||column<0||column>PacmanGame.DEFAULT_GAME_WIDTH)
             {
                 throw new ArgumentOutOfRangeException("Les paramètres sont en dehors de la grille de jeu");
             }
