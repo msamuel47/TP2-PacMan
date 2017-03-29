@@ -9,8 +9,8 @@ namespace TP2PROF
 {
   public class Ghost
   {
-    //fsaasfsa
     //<nDionne>
+    #region Propriétés
     /// <summary>
         /// Position du fantôme
         /// </summary>
@@ -44,7 +44,9 @@ namespace TP2PROF
         { 
             get { return isWeak; }
         }
-    // Propriétés SFML pour l'affichage
+    /// <summary>
+    /// Propriétés SFML pour l'affichage
+    /// </summary>
     Texture ghostTextureNormal = new Texture("Assets/Ghost.bmp");
     Texture ghostTextureScared = new Texture("Assets/GhostScared.bmp");
     Texture ghostTextureWeak = new Texture("Assets/GhostWeak.bmp");
@@ -57,48 +59,73 @@ namespace TP2PROF
     /// <summary>
     /// Délai pour que le fantôme se mette en mouvement au début
     /// </summary>
-    
-
-    
+        
     /// <summary>
     /// Pour l'affichage SFML
     /// </summary>
-    static Color[] ghostColors = new Color[] { Color.Red, new Color(255, 192, 203), new Color(137, 207, 240), new Color(255, 127, 80) };
-    
-    
+    static Color[] ghostColors = new Color[] { Color.Red, new Color(255, 192, 203), new Color(137, 207, 240), new Color(255, 127, 80) };    
     /// <summary>
     /// Compteur du nombre d'instances de fantômes
     /// </summary>
     static int nbGhostCreated = 0;
     static Random rnd = new Random();
-
+    #endregion
+    /// <summary>
+    /// Constructeur d'une instance de Ghost.
+    /// </summary>
+    /// <param name="row">Représente la position en rangée à affecter au fantôme(>=0).</param>
+    /// <param name="column">Représente la position en colonne à affecter au fantôme(>=0).</param>
     public Ghost(int row, int column)
     {
-      // Affectation de la position du fantôme  
-      // Ne pas oublier de lancer une exception si les paramètres sont invalides
+       // Affectation de la position du fantôme  
+       // Ne pas oublier de lancer une exception si les paramètres sont invalides
+       try
+            { 
+                position.Y = row;
+                position.X = column;
+            }
+       catch(IndexOutOfRangeException exception )
+            {
+                Console.WriteLine(exception.ToString());
+                throw;
+            }
 
+       // Affectation de la propriété ghostId.
+       // Quelle serait la meilleure "valeur" à affecter ici???
+       ghostId = 0;
 
-      // Affectation de la propriété ghostId.
-      // Quelle serait la meilleure "valeur" à affecter ici???
-
-
-      // Incrémenter ici la propriété servant à compter le nombre de fantômes créés
-      // jusqu'à date
-
+            // Incrémenter ici la propriété servant à compter le nombre de fantômes créés
+            // jusqu'à date
+      nbGhostCreated++;
 
       // Initialisation SFML
       ghostSprite = new Sprite(ghostTextureNormal);
       ghostSprite.Origin = new Vector2f(ghostTextureNormal.Size.X / 2, ghostTextureNormal.Size.Y / 2);
     }
-
     /// <summary>
     /// Déplace le fantôme selon une direction donnée.
     /// </summary>
     /// <param name="direction">Direction dans laquelle on veut déplacer le fantôme</param>
     /// <param name="grid">Grille de référence. Utilisée pour ne pas que le fantôme passe au travers des murs</param>
-    // A COMPLETER MÉTHODE MOVE
-
-
+    public void Move(Direction direction, Grid grid)
+        {
+            if (direction == Direction.East&&grid.GetGridElementAt(Row,Column+1)!=PacmanElement.Wall)
+            {
+                position.X++;
+            }
+            else if (direction == Direction.West && grid.GetGridElementAt(Row, Column - 1) != PacmanElement.Wall)
+            {
+                position.X--;
+            }
+            else if (direction == Direction.North && grid.GetGridElementAt(Row - 1, Column) != PacmanElement.Wall)
+            {
+                position.Y--;
+            }
+            else if (direction == Direction.South && grid.GetGridElementAt(Row + 1, Column) != PacmanElement.Wall)
+            {
+                position.Y++;
+            }
+        }
     /// <summary>
     /// Affiche le fantôme dans la fenêtre de rendu.
     /// </summary>
@@ -119,16 +146,15 @@ namespace TP2PROF
         ghostSprite.Texture = ghostTextureNormal;
         ghostSprite.Color = ghostColors[ghostId];
       }
-      
-      // ppoulin
-      // A décommenter lorsqu'il sera possible d'accéder aux propriétés Column et Row
-      // du fantôme
-      //ghostSprite.Position =    new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH * Column , 
-      //                                    PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT * Row ) 
-      //                       +  ghostSprite.Origin;
-      window.Draw(ghostSprite);
-    }
 
+            // ppoulin
+            // A décommenter lorsqu'il sera possible d'accéder aux propriétés Column et Row
+            // du fantôme
+            ghostSprite.Position = new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH * Column,
+                                                PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT * Row)
+                                   + ghostSprite.Origin;
+            window.Draw(ghostSprite);
+    }
     /// <summary>
     /// Met à jour la position du fantôme
     /// </summary>
