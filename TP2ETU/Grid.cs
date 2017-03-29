@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using SFML.System;
+using SFML.Window;
 
 namespace TP2PROF
 {
@@ -93,7 +96,11 @@ namespace TP2PROF
         /// <summary>
         /// Constructeur sans paramètre
         /// </summary>
-        // A compléter
+        public Grid()
+        {
+            elements = new PacmanElement[22, 21];
+        }
+       
         /// <summary>
         /// Charge un niveau à partir d'une chaine de caractères en mémoire.
         /// Voir l'énoncé du travail pour le format de la chaîne.
@@ -102,11 +109,12 @@ namespace TP2PROF
         /// <returns>true si le chargement est correct, false sinon</returns>
         public bool LoadFromMemory(string content)
         {
+            int[,] converted2DArray = null;
             int pacmanCount = 0;
             int ghostCageCount = 0;
             bool retval = true;
             int[] nombreAccepter = new[] {0, 1, 2, 3, 4, 5, 6};
-            int[,] converted2DArray = null;
+            
 
             // A compléter selon les spécifications du travail
             //Utilisation de la technologie LINQ pour charger le tableau
@@ -121,18 +129,26 @@ namespace TP2PROF
                 //Conversion du tableau de tableau en tableau 2D de nombre + échec si tableau contient un mauvais
                 // caractère
                 converted2DArray = new int[TableauDeTableaux.Length,TableauDeTableaux[0].Length];
+                bool nombreValide = false;
                 for (int i = 0; i < converted2DArray.GetLength(0); i++)
                 {
                     for (int j = 0; j < converted2DArray.GetLength(1) ; j++)
                     {
                         retval = int.TryParse(TableauDeTableaux[i][j], out converted2DArray[i, j]);
+                        nombreValide = false;
                         for (int k = 0; k < nombreAccepter.Length; k++)
                         {
-                            if (converted2DArray[i, j] != nombreAccepter[k])
+                            
+                            if (converted2DArray[i, j] == nombreAccepter[k])
                             {
-                                retval = false;
-                                converted2DArray[i, j] = -1;
+                                nombreValide = true;
+                                
                             }
+                        }
+                        if (nombreValide != true)
+                        {
+                            retval = false;
+                            converted2DArray[i, j] = -1;
                         }
                         if (converted2DArray[i, j] == 3)
                         {
@@ -156,6 +172,17 @@ namespace TP2PROF
                 }
 
             }
+            if (retval)
+            {
+                
+                for (int i = 0; i < elements.GetLength(0); i++)
+                {
+                    for (int j = 0; j < elements.GetLength(1); j++)
+                    {
+                        SetGridElementAt(i,j,converted2DArray[i,j]);
+                    }
+                }
+            }
             return retval;
         }
         //</SamuelV>
@@ -168,7 +195,45 @@ namespace TP2PROF
         /// <returns>L'élément à la position spécifiée</returns>
         public PacmanElement GetGridElementAt(int row,int column)
         {
-            return elements[row, column];
+            if (!Enumerable.Range(0, Width).Contains(column) || !Enumerable.Range(0, Height).Contains(row))
+            {
+                throw new ArgumentOutOfRangeException("Les paramètres sont en dehors de la grille de jeu");
+            }
+                return elements[row, column];
+            
+            
+        }
+
+        public void SetGridElementAt(int row, int column, int number)
+        {
+            if (number == 0)
+            {
+                elements[row , column] = PacmanElement.None;
+            }
+            if (number == 1)
+            {
+                elements[row, column] = PacmanElement.Wall;
+            }
+            if (number == 2)
+            {
+                elements[row, column] = PacmanElement.Ghost;
+            }
+            if (number == 3)
+            {
+                elements[row, column] = PacmanElement.Pacman;
+            }
+            if (number == 4)
+            {
+                elements[row, column] = PacmanElement.Pill;
+            }
+            if (number == 5)
+            {
+                elements[row, column] = PacmanElement.SuperPill;
+            }
+            if (number == 6)
+            {
+                elements[row, column] = PacmanElement.GhostCage;
+            }
         }
 
 

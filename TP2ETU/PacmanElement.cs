@@ -12,13 +12,13 @@ namespace TP2PROF
     /// </summary>
     public enum PacmanElement
     {
-        Ghost,
-        GhostCage,
         None,
+        Wall,
+        Ghost,
         Pacman,
         Pill,
         SuperPill,
-        Wall
+        GhostCage,
     }
     //</nDionne>
 }
