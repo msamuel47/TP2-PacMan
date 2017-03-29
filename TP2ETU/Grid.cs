@@ -76,7 +76,7 @@ namespace TP2PROF
             get { return pacmanOriginalPosition.X; }
             private  set { pacmanOriginalPosition.X = value; }
         }
-
+        //<SamuelV>
         /// <summary>
         /// Accesseur de la hauteur
         /// Propriété C#
@@ -85,7 +85,7 @@ namespace TP2PROF
         {
             get { return elements.GetLength(1); }
         }
-        // A compléter
+        //<SamuelV>
         /// <summary>
         /// Accesseur de la largeur
         /// Propriété C#
@@ -104,6 +104,7 @@ namespace TP2PROF
             elements = new PacmanElement[22, 21];
         }
        
+        //<SamuelV>
         /// <summary>
         /// Charge un niveau à partir d'une chaine de caractères en mémoire.
         /// Voir l'énoncé du travail pour le format de la chaîne.
@@ -121,18 +122,33 @@ namespace TP2PROF
             {
                 return false;
             }
-            
-            // A compléter selon les spécifications du travail
             //Utilisation de la technologie LINQ pour charger le tableau
-           
-            string[][] TableauDeTableaux = content.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim(new char[] { '\r', '\n', ' ' }).Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
+            string[][] TableauDeTableaux =
+                content.Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(
+                        x =>
+                            x.Trim(new char[] {'\r', '\n', ' '})
+                                .Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                    .ToArray();
             //Valide si les dimensions du tableau sont valides
-            if (TableauDeTableaux.Length != 22 || TableauDeTableaux[0].Length != 21)
+            if (TableauDeTableaux.Length != 22)
             {
                 retval = false;
             }
-            else
+            for (int i = 0; i < TableauDeTableaux.Length; i++)
             {
+                if (TableauDeTableaux[i].Length != 21)
+                {
+                    retval = false;
+                }
+            }
+            if (retval == false)
+            {
+                
+            }
+        else
+
+        {
                 //Conversion du tableau de tableau en tableau 2D de nombre + échec si tableau contient un mauvais
                 // caractère
                 converted2DArray = new int[TableauDeTableaux.Length,TableauDeTableaux[0].Length];
@@ -194,6 +210,8 @@ namespace TP2PROF
         }
         //</SamuelV>
         
+
+        //<SamuelV>
         /// <summary>
         /// Retourne l'élément à la position spécifiée
         /// </summary>
@@ -210,7 +228,7 @@ namespace TP2PROF
             
             
         }
-
+        //<SamuelV>
         public void SetGridElementAt(int row, int column, int number)
         {
             if (!Enumerable.Range(0, Width + 1).Contains(column) || !Enumerable.Range(0, Height + 1).Contains(row))
