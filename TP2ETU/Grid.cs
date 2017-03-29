@@ -61,7 +61,9 @@ namespace TP2PROF
         public int PacmanOriginalPositionRow
         {
             get { return pacmanOriginalPosition.Y; }
+            private set { pacmanOriginalPosition.Y = value; }
         }
+        
         
 
         //<SamuelV>
@@ -72,6 +74,7 @@ namespace TP2PROF
         public int PacmanOriginalPositionColumn
         {
             get { return pacmanOriginalPosition.X; }
+            private  set { pacmanOriginalPosition.X = value; }
         }
 
         /// <summary>
@@ -114,13 +117,17 @@ namespace TP2PROF
             int ghostCageCount = 0;
             bool retval = true;
             int[] nombreAccepter = new[] {0, 1, 2, 3, 4, 5, 6};
+            if (String.IsNullOrEmpty(content))
+            {
+                return false;
+            }
             
-
             // A compléter selon les spécifications du travail
             //Utilisation de la technologie LINQ pour charger le tableau
+           
             string[][] TableauDeTableaux = content.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim(new char[] { '\r', '\n', ' ' }).Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)).ToArray();
             //Valide si les dimensions du tableau sont valides
-            if (TableauDeTableaux.Length != 22 && TableauDeTableaux[0].Length != 21)
+            if (TableauDeTableaux.Length != 22 || TableauDeTableaux[0].Length != 21)
             {
                 retval = false;
             }
@@ -206,6 +213,10 @@ namespace TP2PROF
 
         public void SetGridElementAt(int row, int column, int number)
         {
+            if (!Enumerable.Range(0, Width + 1).Contains(column) || !Enumerable.Range(0, Height + 1).Contains(row))
+            {
+                throw new ArgumentOutOfRangeException("Les paramètres sont en dehors de la grille de jeu");
+            }
             if (number == 0)
             {
                 elements[row , column] = PacmanElement.None;
@@ -220,6 +231,8 @@ namespace TP2PROF
             }
             if (number == 3)
             {
+                PacmanOriginalPositionColumn = column;
+                PacmanOriginalPositionRow = row;
                 elements[row, column] = PacmanElement.Pacman;
             }
             if (number == 4)

@@ -20,6 +20,7 @@ namespace TP2PROF
         /// <returns>Le tableau initialisé correctement</returns>
         static int[,] InitCosts(Grid aGrid, int fromX, int fromY)
         {
+            for (int i = 0 ; i <)
             return null;
         }
         /// <summary>

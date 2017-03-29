@@ -26,99 +26,99 @@ namespace TP2Tests
             // Clean-up
         }
 
-        //    /// <summary>
-        //    /// Teste si le chargement d'un fichier vide échoue
-        //    /// </summary>
-        //    [TestMethod]
-        //    public void TestLoadInvalidContent01()
-        //    {
-        //      // Mise en place des données
-        //      Grid grid = new Grid();
-        //      // Appel de la méthode à tester
-        //      bool result = grid.LoadFromMemory("");
-        //      // Validation des résultats
-        //      Assert.IsFalse(result);
-        //      // Clean-up
-        //    }
+        /// <summary>
+        /// Teste si le chargement d'un fichier vide échoue
+        /// </summary>
+        [TestMethod]
+        public void TestLoadInvalidContent01()
+        {
+            // Mise en place des données
+            Grid grid = new Grid();
+            // Appel de la méthode à tester
+            bool result = grid.LoadFromMemory("");
+            // Validation des résultats
+            Assert.IsFalse(result);
+            // Clean-up
+        }
 
 
-        //    const string INVALID_LEVEL_01 = @"
-        //    ddffd;
-        //    dfaf;
-        //    dfadf;
-        //    ";
-        //    /// <summary>
-        //    /// Teste si le chargement d'un fichier au format totalement invalide échoue
-        //    /// </summary>
-        //    [TestMethod]
-        //    public void TestLoadInvalidContent02()
-        //    {
-        //      // Mise en place des données
-        //      Grid grid = new Grid();
-        //      // Appel de la méthode à tester
-        //      bool result = grid.LoadFromMemory(INVALID_LEVEL_01);
-        //      // Validation des résultats
-        //      Assert.IsFalse(result);
-        //      // Clean-up
-        //    }
+        const string INVALID_LEVEL_01 = @"
+            ddffd;
+            dfaf;
+            dfadf;
+            ";
+        /// <summary>
+        /// Teste si le chargement d'un fichier au format totalement invalide échoue
+        /// </summary>
+        [TestMethod]
+        public void TestLoadInvalidContent02()
+        {
+            // Mise en place des données
+            Grid grid = new Grid();
+            // Appel de la méthode à tester
+            bool result = grid.LoadFromMemory(INVALID_LEVEL_01);
+            // Validation des résultats
+            Assert.IsFalse(result);
+            // Clean-up
+        }
 
-        //    const string INVALID_LEVEL_02 = @"
-        //    1,1,1,1,1;
-        //    1,2,1,2,1;
-        //    1,2,1,2,1,
-        //    ";
-        //    /// <summary>
-        //    /// Teste si le chargement d'un fichier au format invalide échoue
-        //    /// </summary>
-        //    [TestMethod]
-        //    public void TestLoadInvalidContent03()
-        //    {
-        //      // Mise en place des données
-        //      Grid grid = new Grid();
-        //      // Appel de la méthode à tester
-        //      bool result = grid.LoadFromMemory(INVALID_LEVEL_02);
-        //      // Validation des résultats
-        //      Assert.IsFalse(result);
-        //      // Clean-up
-        //    }
+        const string INVALID_LEVEL_02 = @"
+            1,1,1,1,1;
+            1,2,1,2,1;
+            1,2,1,2,1,
+            ";
+        /// <summary>
+        /// Teste si le chargement d'un fichier au format invalide échoue
+        /// </summary>
+        [TestMethod]
+        public void TestLoadInvalidContent03()
+        {
+            // Mise en place des données
+            Grid grid = new Grid();
+            // Appel de la méthode à tester
+            bool result = grid.LoadFromMemory(INVALID_LEVEL_02);
+            // Validation des résultats
+            Assert.IsFalse(result);
+            // Clean-up
+        }
 
 
-        //    const string INVALID_LEVEL_03 = @"
-        //1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
-        //1,1,0,4,4,4,4,4,4,4,1,4,4,4,4,4,4,4,4,1,1;
-        //1,1,5,1,1,4,1,1,1,4,1,4,1,1,1,4,1,1,5,1,1;
-        //1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,1;
-        //1,1,4,1,1,4,1,4,1,1,1,1,1,4,1,4,1,1,4,1,1;
-        //1,1,4,4,4,4,1,4,4,4,1,4,4,4,1,4,4,4,4,1,1;
-        //1,1,1,1,1,4,1,1,1,4,1,4,1,1,1,4,1,1,1,1,1;
-        //1,1,1,1,1,4,1,4,4,4,4,4,4,4,1,4,1,1,1,1,1;
-        //1,1,1,1,1,4,1,4,1,1,2,1,1,4,1,4,1,1,1,1,1;
-        //1,1,1,4,4,4,4,4,1,2,2,2,1,4,4,4,4,4,1,1,1;
-        //1,1,1,1,1,4,1,4,1,1,6,1,1,4,1,4,1,1,1,1,1;
-        //1,1,1,1,1,4,1,4,1,1,1,1,1,4,1,4,1,1,1,1,1;
-        //1,1,1,1,1,4,1,4,4,4,4,4,4,4,1,4,1,1,1,1,1;
-        //1,1,1,1,1,4,1,4,1,1,1,1,1,4,1,4,1,1,1,1,1;
-        //1,1,4,1,1,4,1,1,1,4,1,4,1,1,1,4,1,1,4,1,1;
-        //1,1,4,4,1,4,4,4,4,4,3,4,4,4,4,4,1,4,4,1,1;
-        //1,1,1,4,1,4,1,4,1,1,1,1,1,4,1,4,1,4,1,1,1;
-        //1,1,4,4,4,4,1,4,4,4,1,4,4,4,1,4,4,4,4,1,1;
-        //1,1,5,1,1,1,1,1,1,4,1,4,1,1,1,1,1,1,5,1,1;
-        //1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,1;
-        //1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1";
-        //    /// <summary>
-        //    /// Teste si le chargement d'un fichier dans lequel il manque une ligne échoue
-        //    /// </summary>
-        //    [TestMethod]
-        //    public void TestLoadInvalidContent04()
-        //    {
-        //      // Mise en place des données
-        //      Grid grid = new Grid();
-        //      // Appel de la méthode à tester
-        //      bool result = grid.LoadFromMemory(INVALID_LEVEL_03);
-        //      // Validation des résultats
-        //      Assert.IsFalse(result);
-        //      // Clean-up
-        //    }
+        const string INVALID_LEVEL_03 = @"
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
+        1,1,0,4,4,4,4,4,4,4,1,4,4,4,4,4,4,4,4,1,1;
+        1,1,5,1,1,4,1,1,1,4,1,4,1,1,1,4,1,1,5,1,1;
+        1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,1;
+        1,1,4,1,1,4,1,4,1,1,1,1,1,4,1,4,1,1,4,1,1;
+        1,1,4,4,4,4,1,4,4,4,1,4,4,4,1,4,4,4,4,1,1;
+        1,1,1,1,1,4,1,1,1,4,1,4,1,1,1,4,1,1,1,1,1;
+        1,1,1,1,1,4,1,4,4,4,4,4,4,4,1,4,1,1,1,1,1;
+        1,1,1,1,1,4,1,4,1,1,2,1,1,4,1,4,1,1,1,1,1;
+        1,1,1,4,4,4,4,4,1,2,2,2,1,4,4,4,4,4,1,1,1;
+        1,1,1,1,1,4,1,4,1,1,6,1,1,4,1,4,1,1,1,1,1;
+        1,1,1,1,1,4,1,4,1,1,1,1,1,4,1,4,1,1,1,1,1;
+        1,1,1,1,1,4,1,4,4,4,4,4,4,4,1,4,1,1,1,1,1;
+        1,1,1,1,1,4,1,4,1,1,1,1,1,4,1,4,1,1,1,1,1;
+        1,1,4,1,1,4,1,1,1,4,1,4,1,1,1,4,1,1,4,1,1;
+        1,1,4,4,1,4,4,4,4,4,3,4,4,4,4,4,1,4,4,1,1;
+        1,1,1,4,1,4,1,4,1,1,1,1,1,4,1,4,1,4,1,1,1;
+        1,1,4,4,4,4,1,4,4,4,1,4,4,4,1,4,4,4,4,1,1;
+        1,1,5,1,1,1,1,1,1,4,1,4,1,1,1,1,1,1,5,1,1;
+        1,1,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,1,1;
+        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1";
+        /// <summary>
+        /// Teste si le chargement d'un fichier dans lequel il manque une ligne échoue
+        /// </summary>
+        [TestMethod]
+        public void TestLoadInvalidContent04()
+        {
+            // Mise en place des données
+            Grid grid = new Grid();
+            // Appel de la méthode à tester
+            bool result = grid.LoadFromMemory(INVALID_LEVEL_03);
+            // Validation des résultats
+            Assert.IsFalse(result);
+            // Clean-up
+        }
         //    const string INVALID_LEVEL_04 = @"
         //1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
         //1,1,0,4,4,4,4,4,4,1,4,4,4,4,4,4,4,4,1,1;
@@ -510,13 +510,15 @@ namespace TP2Tests
     [ExpectedException(typeof(ArgumentOutOfRangeException))]
     public void TestSetElementAt02()
     {
+       
       // Mise en place des données
-      
-      // Appel de la méthode à tester
-      
-      // Validation des résultats
-      
-      // Clean-up
+     Grid testGridElement02 = new Grid();
+        testGridElement02.LoadFromMemory(VALID_LEVEL_01);
+        // Appel de la méthode à tester
+        testGridElement02.SetGridElementAt(39,27,2);
+        // Validation des résultats
+
+        // Clean-up
     }
   }
 }
