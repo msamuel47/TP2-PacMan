@@ -15,13 +15,27 @@ namespace TP2PROF
         /// fantôme où le tableau est initialisé à 0.
         /// </summary>
         /// <param name="aGrid">La grille du jeu: pour connaitre les dimensions attendues</param>
-        /// <param name="fromX">La position du pacman en colonne</param>
-        /// <param name="fromY">La position du pacman en ligne</param>
+        /// <param name="fromX">La position du fantome en colonne</param>
+        /// <param name="fromY">La position du fantome en ligne</param>
         /// <returns>Le tableau initialisé correctement</returns>
         public static int[,] InitCosts(Grid aGrid, int fromX, int fromY)
         {
-            for (int i = 0 ; i <)
-            return null;
+            int[,] pathFinderGridInit = new int[aGrid.Height,aGrid.Width];
+            for (int i = 0; i < aGrid.Height; i++)
+            {
+                for (int j = 0; j < aGrid.Width; j++)
+                {
+                    if (i == fromY && j == fromX)
+                    {
+                        pathFinderGridInit[i, j] = 0;
+                    }
+                    else
+                    {
+                        pathFinderGridInit[i, j] = int.MaxValue;
+                    }
+                }
+            }
+            return pathFinderGridInit;
         }
         /// <summary>
         /// Détermine le premier déplacement nécessaire pour déplacer un objet de la position (fromX, fromY)
@@ -59,7 +73,50 @@ namespace TP2PROF
         /// </summary>
         public static void ComputeCosts(Grid aGrid, int fromX, int fromY, int toX, int toY, int[,] costs)
         {
-
+            if (fromX != 0)
+            {
+                if (costs[fromY, fromX - 1] > costs[fromY, fromX] + 1)
+                {
+                    if (aGrid.GetGridElementAt(fromY, fromX - 1) != PacmanElement.Wall)
+                    {
+                        costs[fromY, fromX - 1] = costs[fromY, fromX] + 1;
+                        ComputeCosts(aGrid , fromX - 1 , fromY , 0 , 0 , costs);
+                    }
+                }
+            }
+            if (fromX != aGrid.Width - 1)
+            {
+                if (costs[fromY, fromX + 1] > costs[fromY, fromX] + 1)
+                {
+                    if (aGrid.GetGridElementAt(fromY, fromX + 1) != PacmanElement.Wall)
+                    {
+                        costs[fromY, fromX + 1] = costs[fromY, fromX] + 1;
+                        ComputeCosts(aGrid, fromX + 1, fromY, 0, 0, costs);
+                    }
+                }
+            }
+            if (fromY != 0)
+            {
+                if (costs[fromY - 1, fromX] > costs[fromY, fromX] + 1)
+                {
+                    if (aGrid.GetGridElementAt(fromY - 1, fromX) != PacmanElement.Wall)
+                    {
+                        costs[fromY - 1, fromX] = costs[fromY, fromX] + 1;
+                        ComputeCosts(aGrid, fromX, fromY - 1, 0, 0, costs);
+                    }
+                }
+            }
+            if (fromY != aGrid.Width - 1)
+            {
+                if (costs[fromY + 1, fromX] > costs[fromY, fromX] + 1)
+                {
+                    if (aGrid.GetGridElementAt(fromY + 1, fromX) != PacmanElement.Wall)
+                    {
+                        costs[fromY + 1, fromX] = costs[fromY, fromX] + 1;
+                        ComputeCosts(aGrid, fromX, fromY + 1, 0, 0, costs);
+                    }
+                }
+            }
         }
         /// <summary>
         /// Parcourt le tableau de coûts pour trouver le premier déplacement requis pour aller de la position (fromX, fromY)
