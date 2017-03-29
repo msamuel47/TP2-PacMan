@@ -60,7 +60,7 @@ namespace TP2PROF
     /// Accesseur permettant de savoir si une super pastille est active
     /// Propriété C#
     /// </summary>
-
+    
         
     // Propriétés SFML pour l'affichage des pastilles et super-pastilles
     const float SMALL_PILL_RADIUS = DEFAULT_GAME_ELEMENT_HEIGHT/8;
@@ -78,7 +78,8 @@ namespace TP2PROF
     /// </summary>
     public PacmanGame()
     {
-           
+            grid = new Grid();
+            ghosts = new Ghost[NB_GHOSTS];
             
       
 
@@ -101,9 +102,7 @@ namespace TP2PROF
       if (retval)
       {
         string fileContent = System.IO.File.ReadAllText(path);
-        // ppoulin
-        // Appelez la méthode LoadFromMemory ici
-        // A COMPLETER
+        grid.LoadFromMemory(fileContent);
 
 
         // Si le chargement s'est correctement effectué
@@ -111,7 +110,22 @@ namespace TP2PROF
         {
           // On parcourt la grille et, avec la méthode GetGridElementAt
           // On trouve les positions où il y a des fantômes
-          
+          for(int i = 0; i < grid.Width; i++)
+                    {
+                        for(int j = 0; j < grid.Height; j++)
+                        {
+                            if (grid.GetGridElementAt(j, i) == PacmanElement.Ghost)
+                            {
+                                ghosts[Ghost.nbGhostCreated] = new Ghost(j, i);
+                                grid.SetGridElementAt(j, i, 0);
+                            }
+                            else if (grid.GetGridElementAt(j, i) == PacmanElement.Pacman)
+                            {
+                                pacman = new Pacman(j, i);
+                                grid.SetGridElementAt(j, i, 0);
+                            }
+                        }
+                    }
           // Quand on en trouve un, on crée le fantôme (new Ghost(...)) correspondant
           // et on l'enlève de la grille car dorénavant c'est l'objet de type Ghost
           // qui gère le déplacement
