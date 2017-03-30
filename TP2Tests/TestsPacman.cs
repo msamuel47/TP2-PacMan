@@ -168,19 +168,17 @@ namespace TP2Tests
             Grid grid = new Grid();
             grid.LoadFromMemory(VALID_LEVEL_02);
             Pacman pacman = new Pacman(grid.PacmanOriginalPositionRow, grid.PacmanOriginalPositionColumn);
-
-
-
             // Appel de la méthode à tester
-
+            pacman.Move(Direction.West, grid);
 
 
             // Validation des résultats
+        Assert.IsTrue(grid.GetGridElementAt(grid.PacmanOriginalPositionRow, grid.PacmanOriginalPositionColumn - 1) ==
+                      PacmanElement.Pacman);
 
 
-
-            // Clean-up
-        }
+        // Clean-up
+    }
 
 
     /// <summary>
@@ -192,17 +190,19 @@ namespace TP2Tests
     public void TestMoveValid02()
     {
       // Mise en place des données      
-      
+      Grid grid = new Grid();
+        grid.LoadFromMemory(VALID_LEVEL_02);
+        Pacman pacman = new Pacman(grid.PacmanOriginalPositionRow, grid.PacmanOriginalPositionColumn);
+
+        // Appel de la méthode à tester
+        //Il y a un fantome a l'est de pacman
+        pacman.Move(Direction.East, grid);
+
+        // Validation des résultats
+        Assert.AreEqual(PacmanElement.Pacman , grid.GetGridElementAt(grid.PacmanOriginalPositionRow, grid.PacmanOriginalPositionColumn + 1));
 
 
-      // Appel de la méthode à tester
-      
-
-      // Validation des résultats
-      
-
-
-      // Clean-up
+        // Clean-up
     }
   }
 }

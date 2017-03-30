@@ -175,6 +175,8 @@ namespace TP2PROF
                         }
                         if (converted2DArray[i, j] == 3)
                         {
+                            PacmanOriginalPositionColumn = j;
+                            PacmanOriginalPositionRow = i;
                             pacmanCount++;
                         }
                         if (converted2DArray[i, j] == 6)
@@ -249,8 +251,6 @@ namespace TP2PROF
             }
             if (number == 3)
             {
-                PacmanOriginalPositionColumn = column;
-                PacmanOriginalPositionRow = row;
                 elements[row, column] = PacmanElement.Pacman;
             }
             if (number == 4)

@@ -76,47 +76,56 @@ namespace TP2PROF
       {
           if (direction == Direction.West)
           {
-              if (Column - 1 < 0)
+              if (Column - 1 > 0)
               {
                   if (grid.GetGridElementAt(Row, Column - 1) != PacmanElement.Wall)
                   {
+                      grid.SetGridElementAt(Row, Column, 0);
                       Column--;
+                      grid.SetGridElementAt(Row, Column, 3);
                   }
               }
-              if (direction == Direction.East)
+          }
+          else if (direction == Direction.East)
+          {
+              if (Column < grid.Width - 1)
               {
-                  if (Column < grid.Width - 1)
+                  if (grid.GetGridElementAt(Row, Column + 1) != PacmanElement.Wall)
                   {
-                      if (grid.GetGridElementAt(Row, Column + 1) != PacmanElement.Wall)
-                      {
-                          Column++;
-                      }
+                      grid.SetGridElementAt(Row, Column, 0);
+                      Column++;
+                      grid.SetGridElementAt(Row, Column, 3);
                   }
               }
-              if (direction == Direction.North)
+          }
+          else if (direction == Direction.North)
+          {
+              if (Row - 1 < 0)
               {
-                  if (Row - 1 < 0)
+                  if (grid.GetGridElementAt(Row - 1, Column) != PacmanElement.Wall)
                   {
-                      if (grid.GetGridElementAt(Row - 1, Column) != PacmanElement.Wall)
-                      {
-                          Row--;
-                      }
+                      grid.SetGridElementAt(Row, Column, 0);
+                      Row--;
+                      grid.SetGridElementAt(Row, Column, 3);
                   }
               }
-              if (direction == Direction.South) 
+          }
+          else if (direction == Direction.South)
+          {
+              if (Row < grid.Width - 1)
               {
-                  if (Row < grid.Width - 1)
+                  if (grid.GetGridElementAt(Row + 1, Column) != PacmanElement.Wall)
                   {
-                      if (grid.GetGridElementAt(Row + 1, Column) != PacmanElement.Wall)
-                      {
-                          Row++;
-                      }
+                      grid.SetGridElementAt(Row, Column, 0);
+                      Row++;
+                      grid.SetGridElementAt(Row, Column, 3);
                   }
               }
-              if (direction == Direction.Undefined)
-              {
-               
-              }
+          }
+          else if (direction == Direction.Undefined)
+          {
+              grid.SetGridElementAt(Row, Column, 3);
+          
           }
       }
 
