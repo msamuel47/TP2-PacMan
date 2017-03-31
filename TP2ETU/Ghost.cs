@@ -73,7 +73,7 @@ namespace TP2PROF
     /// <summary>
     /// Délai pour que le fantôme se mette en mouvement au début
     /// </summary>
-        
+       
     /// <summary>
     /// Pour l'affichage SFML
     /// </summary>
@@ -169,6 +169,7 @@ namespace TP2PROF
                                                 PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT * Row)
                                    + ghostSprite.Origin;
             window.Draw(ghostSprite);
+            
     }
     /// <summary>
     /// Met à jour la position du fantôme
@@ -178,9 +179,32 @@ namespace TP2PROF
     /// <param name="isSuperPillActive"></param>
     public void Update(Grid grid, Vector2i pacmanPosition, bool isSuperPillActive)
     {
-            if (pacmanPosition == position&&isSuperPillActive==true)
+            
+            int cageRow = 0;
+            int cageColumn = 0;
+            for (int i = 0; i < grid.Width; i++)
+            {
+                for (int j = 0; j < grid.Height; j++)
+                {
+                    if (grid.GetGridElementAt(j, i) == PacmanElement.GhostCage)
+                    {
+                        cageRow = j;
+                        cageColumn = i;
+                    }
+                }
+            }
+            if (isSuperPillActive)
             {
                 isWeak = true;
+                if (pacmanPosition == position)
+                {
+                    Column = cageColumn;
+                    Row = cageRow;
+                }
+                else
+                {
+                    Direction firstDirection = PathFinder.FindShortestPath(grid,Column, Row, cageColumn, cageRow);
+                }
             }
             if(isSuperPillActive==false)
             {

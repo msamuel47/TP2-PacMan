@@ -89,7 +89,6 @@ namespace TP2PROF
             superPillShape.Origin = new Vector2f((float)-(DEFAULT_GAME_ELEMENT_WIDTH - SUPER_PILL_RADIUS) / 2, -(float)(DEFAULT_GAME_ELEMENT_HEIGHT - SUPER_PILL_RADIUS) / 2);
             wallSprite = new Sprite(wallTexture);
         }
-
         /// <summary>
         /// Charge un fichier de labyrinthe.
         /// </summary>
@@ -143,7 +142,6 @@ namespace TP2PROF
 
             return retval;
         }
-
         /// <summary>
         /// Met à jour la logique de jeu
         /// </summary>
@@ -153,6 +151,8 @@ namespace TP2PROF
         /// mangé par un fantôme</returns>
         public EndGameResult Update(Keyboard.Key key)
         {
+            //Position du pacman, transformé en vecteur.
+            Vector2i pacmanPosition = new Vector2i(pacman.Column, pacman.Row);
             // Déplacement du joueur
             if (key == Keyboard.Key.Left)
             {
@@ -185,37 +185,68 @@ namespace TP2PROF
 
 
 
-
             // Mise à jour des fantômes
-            // A COMPLETER    
+            for (int i = 0; i < ghosts.Length; i++)
+            {
 
+                ghosts[i].Update(grid, pacmanPosition, SuperPillActive);
+            }
 
 
 
             // Gestion des collisions avec le pacman
-            // A COMPLETER    
 
 
 
 
+            int durationSuperPill = 0;
             // Vérification du ramassage d'une pastille
-            // A COMPLETER    
-
-
-
-
+            if (grid.GetGridElementAt(pacman.Row, pacman.Column) == PacmanElement.Pill)
+            {
+                grid.SetGridElementAt(pacman.Row, pacman.Column, 0);
+            }
             // Vérification de l'activation d'un superpill
-            // A COMPLETER    
-
-
-
-
+            if (grid.GetGridElementAt(pacman.Row, pacman.Column) == PacmanElement.SuperPill)
+            {
+                grid.SetGridElementAt(pacman.Row, pacman.Column, 0);
+                SuperPillActive = true;
+               
+            }
+            durationSuperPill++;
+            if (durationSuperPill == SUPERPILL_ACTIVATION_TIME)
+            {
+                SuperPillActive = false;
+            }
             // Validations de fin de partie
-            // A COMPLETER car il faut que la partie finisse s'il ne reste plus de pastille
-            // ou si le pacman a été mangé par un fantôme
-            return EndGameResult.NotFinished;
+            EndGameResult gameResult = EndGameResult.NotFinished;
+            //Il reste des pills, la partie n'est pas finie.
+            for(int i = 0; i < DEFAULT_GAME_ELEMENT_WIDTH; i++)
+            {
+                for(int j = 0; j < DEFAULT_GAME_ELEMENT_HEIGHT; j++)
+                {
+                    if (grid.GetGridElementAt(j, i) == PacmanElement.Pill || grid.GetGridElementAt(j, i) == PacmanElement.SuperPill)
+                    {
+                        gameResult = EndGameResult.NotFinished;
+                    }
+                }
+            }
+            //Un fantôme a atteint pacman, la partie est perdue.
+            for (int i = 0; i < ghosts.Length; i++)
+            {
+                Vector2i ghostPosition = new Vector2i(ghosts[i].Column, ghosts[i].Row);
+                if (pacmanPosition == ghostPosition&&SuperPillActive==false)
+                {
+                    gameResult = EndGameResult.Losse;
+                }
+            }
+            //Il ne reste plus de pills, la partie est gagnée.
+            int nbPillsRemaining = CountNbPillsRemaining();
+            if (nbPillsRemaining == 0)
+            {
+                gameResult = EndGameResult.Win;
+            }
+            return gameResult;            
         }
-
         /// <summary>
         /// Calcule le nombre de pastille non encore ramassées par le pacman
         /// </summary>
@@ -235,10 +266,6 @@ namespace TP2PROF
             }
             return nbPillsRemaining;
         }
-
-
-
-
         /// <summary>
         /// Dessine les éléments du jeu à l'écran
         /// </summary>
