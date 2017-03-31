@@ -83,7 +83,7 @@ namespace TP2PROF
         /// </summary>
         public int Height
         {
-            get { return PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT; }
+            get { return PacmanGame.DEFAULT_GAME_HEIGHT; }
         }
         //<SamuelV>
         /// <summary>
@@ -92,7 +92,7 @@ namespace TP2PROF
         /// </summary>
         public int Width
         {
-            get { return PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH; }
+            get { return PacmanGame.DEFAULT_GAME_WIDTH; }
         }
         
         //<SamuelV>
