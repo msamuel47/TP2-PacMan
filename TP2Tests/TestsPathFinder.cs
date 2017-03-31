@@ -67,6 +67,7 @@ namespace TP2Tests
     /// pour différents scénarios: chemins existants, chemins 
     /// inexistants (ex. à partie ou dans un mur!)
     /// </summary>
+    //<SamuelV>
     [TestMethod]
     public void TestComputeCost_01()
     {
@@ -77,15 +78,7 @@ namespace TP2Tests
 
       // Appel de la méthode à tester
         PathFinder.ComputeCosts(grid,10,8,0,0,cost);
-        for (int i = 0; i < cost.GetLength(0); i++)
-        {
-            for (int j = 0; j < cost.GetLength(1); j++)
-            {
-                Debug.Write(" " + cost[i,j] + " ");
-            }
-            Debug.Write("\n\r");
-          
-        }
+        
       // Validations
       // Chemins existants
       //Test chemin vers l'est
@@ -102,7 +95,7 @@ namespace TP2Tests
 
             ;
     }
-    
+    //</SamuelV>
     /// <summary>
     /// Test de calcul d'une direction lorsque le point de départ
     /// est le même que le point d'arrivée.

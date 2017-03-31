@@ -78,28 +78,39 @@ namespace TP2PROF
         /// </summary>
         public static void ComputeCosts(Grid aGrid, int fromX, int fromY, int toX, int toY, int[,] costs)
         {
+            //Si la destination n'est pas à la bordure  gauche de la grille de jeu (position relative au X)
             if (fromX != 0)
             {
+                //Si la destination qui est à la gauche coûte plus chère que l'emplacement actuel + 1
                 if (costs[fromY, fromX - 1] > costs[fromY, fromX] + 1)
                 {
+                    //Si la destination à gauche n'est pas un mur
                     if (aGrid.GetGridElementAt(fromY, fromX - 1) != PacmanElement.Wall)
                     {
+                        //Alors assignation de la destionation à gauche qui va coûter un déplacement de plus
                         costs[fromY, fromX - 1] = costs[fromY, fromX] + 1;
+                        // Appel à nouveau de la fonction mais à la gauche de la position
                         ComputeCosts(aGrid , fromX - 1 , fromY , 0 , 0 , costs);
                     }
                 }
             }
+            //Si la destination n'est pas à la droite de la bordure de la grille (position relative au X)
             if (fromX != aGrid.Width - 1)
             {
+                //Si la destination qui est à la droite coûte plus chère que l'emplacement actuel + 1
                 if (costs[fromY, fromX + 1] > costs[fromY, fromX] + 1)
                 {
+                    //Si la destionation à la droite n'est pas un mur
                     if (aGrid.GetGridElementAt(fromY, fromX + 1) != PacmanElement.Wall)
                     {
+                        //Alors assignation de la destination à droite qui va couter un déplacement de plus
                         costs[fromY, fromX + 1] = costs[fromY, fromX] + 1;
+                        //Appel à nouveau de la fonction mais à la droite de la postion
                         ComputeCosts(aGrid, fromX + 1, fromY, 0, 0, costs);
                     }
                 }
             }
+            //Même chose mais relatif à la postion des Y
             if (fromY != 0)
             {
                 if (costs[fromY - 1, fromX] > costs[fromY, fromX] + 1)

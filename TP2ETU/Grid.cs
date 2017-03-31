@@ -233,6 +233,7 @@ namespace TP2PROF
         //<SamuelV>
         public void SetGridElementAt(int row, int column, int number)
         {
+            
             if (row<0||row>PacmanGame.DEFAULT_GAME_HEIGHT||column<0||column>PacmanGame.DEFAULT_GAME_WIDTH)
             {
                 throw new ArgumentOutOfRangeException("Les paramètres sont en dehors de la grille de jeu");
