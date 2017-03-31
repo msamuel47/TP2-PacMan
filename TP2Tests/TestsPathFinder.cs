@@ -88,7 +88,7 @@ namespace TP2Tests
         }
       // Validations
       // Chemins existants
-      //Test chemin vers le nord
+      //Test chemin vers l'est
        Assert.AreEqual(1 , cost[7,10]);
        Assert.AreEqual(2, cost[7, 11]);
 
