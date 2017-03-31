@@ -180,7 +180,7 @@ namespace TP2Tests
         // Clean-up
     }
 
-
+        //<SamuelV>
     /// <summary>
     /// Teste le déplacement valide du pacman vers un fantôme
     /// Vous devez positionner le pacman à côté d'un fantôme et appeler la 

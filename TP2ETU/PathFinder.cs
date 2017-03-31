@@ -8,7 +8,8 @@ namespace TP2PROF
 {
   public static class PathFinder
   {
-        //<nDionne>
+        
+        //<SamuelV>
         /// <summary>
         /// Initialise le tableau des coûts de déplacements, Le tableau est 
         /// initialisé à int.MaxValue partout sauf à l'endroit où se trouve le
@@ -37,6 +38,7 @@ namespace TP2PROF
             }
             return pathFinderGridInit;
         }
+        //</SamuelV>
         /// <summary>
         /// Détermine le premier déplacement nécessaire pour déplacer un objet de la position (fromX, fromY)
         /// vers la position (toX, toY). 
@@ -50,6 +52,7 @@ namespace TP2PROF
         /// <returns>La direction dans laquelle on doit aller. Direction.None si l'on
         /// est déjà rendu ou Direction.Undefined s'il est impossible d'atteindre la cible</returns>
         /// </summary>
+        //<nDionne>
         public static Direction FindShortestPath(Grid aGrid, int fromX, int fromY, int toX, int toY)
         {
             int[,] initialCosts = InitCosts(aGrid, fromX, fromY);
@@ -58,6 +61,8 @@ namespace TP2PROF
 
             return RecurseFindDirection(initialCosts, toX, toY, fromX, fromY);
         }
+        //</nDionne>
+        //<SamuelV>
         /// <summary>
         /// Calcule le nombre de déplacements requis pour aller de la position (fromX, fromY)
         /// vers la position (toX, toY). 
@@ -118,6 +123,8 @@ namespace TP2PROF
                 }
             }
         }
+        //</SamuelV>
+        //<nDionne>
         /// <summary>
         /// Parcourt le tableau de coûts pour trouver le premier déplacement requis pour aller de la position (fromX, fromY)
         /// vers la position (toX, toY). 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TP2PROF;
 namespace TP2Tests
@@ -70,24 +71,36 @@ namespace TP2Tests
     public void TestComputeCost_01()
     {
       // Mise en place des données
-      
+      Grid grid = new Grid();
+        grid.LoadFromMemory(VALID_LEVEL_01);
+        int[,] cost = PathFinder.InitCosts(grid, 10, 8);
 
       // Appel de la méthode à tester
-      
-
+        PathFinder.ComputeCosts(grid,10,8,0,0,cost);
+        for (int i = 0; i < cost.GetLength(0); i++)
+        {
+            for (int j = 0; j < cost.GetLength(1); j++)
+            {
+                Debug.Write(" " + cost[i,j] + " ");
+            }
+            Debug.Write("\n\r");
+          
+        }
       // Validations
       // Chemins existants
-      
+      //Test chemin vers le nord
+       Assert.AreEqual(1 , cost[7,10]);
+       Assert.AreEqual(2, cost[7, 11]);
 
 
 
 
 
-      // Chemins inexistants
-      
-      
-      
-      ;
+            // Chemins inexistants
+
+
+
+            ;
     }
     
     /// <summary>
