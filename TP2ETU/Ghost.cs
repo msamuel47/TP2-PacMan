@@ -73,7 +73,7 @@ namespace TP2PROF
     /// <summary>
     /// Délai pour que le fantôme se mette en mouvement au début
     /// </summary>
-       
+    int delayUpdated = 0;  
     /// <summary>
     /// Pour l'affichage SFML
     /// </summary>
@@ -105,9 +105,9 @@ namespace TP2PROF
                 throw;
             }
 
-       // Affectation de la propriété ghostId.
-       // Quelle serait la meilleure "valeur" à affecter ici???
-       ghostId = 0;
+            // Affectation de la propriété ghostId.
+            // Quelle serait la meilleure "valeur" à affecter ici???
+            ghostId = nbGhostCreated;
 
             // Incrémenter ici la propriété servant à compter le nombre de fantômes créés
             // jusqu'à date
@@ -168,8 +168,7 @@ namespace TP2PROF
             ghostSprite.Position = new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH * Column,
                                                 PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT * Row)
                                    + ghostSprite.Origin;
-            window.Draw(ghostSprite);
-            
+            window.Draw(ghostSprite);            
     }
     /// <summary>
     /// Met à jour la position du fantôme
@@ -179,7 +178,7 @@ namespace TP2PROF
     /// <param name="isSuperPillActive"></param>
     public void Update(Grid grid, Vector2i pacmanPosition, bool isSuperPillActive)
     {
-            
+            delayUpdated++;            
             int cageRow = 0;
             int cageColumn = 0;
             for (int i = 0; i < grid.Width; i++)
@@ -195,21 +194,21 @@ namespace TP2PROF
             }
             if (isSuperPillActive)
             {
-                isWeak = true;
-                if (pacmanPosition == position)
+                if (delayUpdated == 8)
                 {
-                    Column = cageColumn;
-                    Row = cageRow;
-                }
-                else
-                {
-                    Direction firstDirection = PathFinder.FindShortestPath(grid,Column, Row, cageColumn, cageRow);
+                    Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, cageColumn, cageRow);
+                    Move(firstDirection, grid);
+                    delayUpdated = 0;
                 }
             }
             if(isSuperPillActive==false)
             {
-                Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, pacmanPosition.X, pacmanPosition.Y);
-                Move(firstDirection, grid);
+                if (delayUpdated == 8)
+                {
+                    Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, pacmanPosition.X, pacmanPosition.Y);
+                    Move(firstDirection, grid);
+                    delayUpdated = 0;
+                }
             }            
     }
   }

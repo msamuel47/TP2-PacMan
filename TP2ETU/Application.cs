@@ -8,7 +8,7 @@ namespace TP2PROF
 {
   class Application
   {
-    public const int TARGET_FPS = 15;
+    public const int TARGET_FPS = 20;
     private RenderWindow window = null;
     private PacmanGame game = null;
     private Keyboard.Key lastKeyPressed = Keyboard.Key.Space;
@@ -44,6 +44,7 @@ namespace TP2PROF
         window.SetActive();
         while ((lastKeyPressed != Keyboard.Key.Escape) && window.IsOpen && (game.Update(lastKeyPressed) == EndGameResult.NotFinished))
         {
+          
           window.Clear(Color.Black);
           window.DispatchEvents();
           game.Draw(window);

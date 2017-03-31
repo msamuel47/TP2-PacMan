@@ -53,15 +53,15 @@ namespace TP2PROF
         /// <summary>
         /// Durée d'activation d'une superpastille (en secondes)
         /// </summary>
-        private const int SUPERPILL_ACTIVATION_TIME = 5;
-
+        private const int SUPERPILL_ACTIVATION_TIME = 150;
+        int durationSuperPill;
 
         /// <summary>
         /// Accesseur permettant de savoir si une super pastille est active
         /// Propriété C#
         /// </summary>
         bool SuperPillActive = false;
-
+        
         // Propriétés SFML pour l'affichage des pastilles et super-pastilles
         const float SMALL_PILL_RADIUS = DEFAULT_GAME_ELEMENT_HEIGHT / 8;
         const float SUPER_PILL_RADIUS = 2 * SMALL_PILL_RADIUS;
@@ -151,6 +151,7 @@ namespace TP2PROF
         /// mangé par un fantôme</returns>
         public EndGameResult Update(Keyboard.Key key)
         {
+            
             //Position du pacman, transformé en vecteur.
             Vector2i pacmanPosition = new Vector2i(pacman.Column, pacman.Row);
             // Déplacement du joueur
@@ -182,41 +183,46 @@ namespace TP2PROF
                     pacman.Row++;
                 }
             }
-
-
-
             // Mise à jour des fantômes
             for (int i = 0; i < ghosts.Length; i++)
             {
-
                 ghosts[i].Update(grid, pacmanPosition, SuperPillActive);
             }
-
-
-
             // Gestion des collisions avec le pacman
 
 
 
 
-            int durationSuperPill = 0;
+            
             // Vérification du ramassage d'une pastille
             if (grid.GetGridElementAt(pacman.Row, pacman.Column) == PacmanElement.Pill)
             {
                 grid.SetGridElementAt(pacman.Row, pacman.Column, 0);
+                
             }
             // Vérification de l'activation d'un superpill
             if (grid.GetGridElementAt(pacman.Row, pacman.Column) == PacmanElement.SuperPill)
             {
+                durationSuperPill = 0;
                 grid.SetGridElementAt(pacman.Row, pacman.Column, 0);
                 SuperPillActive = true;
-               
+                
+
             }
-            durationSuperPill++;
-            if (durationSuperPill == SUPERPILL_ACTIVATION_TIME)
+            if (SuperPillActive)
             {
-                SuperPillActive = false;
+                
+                if (durationSuperPill == SUPERPILL_ACTIVATION_TIME)
+                {
+                    SuperPillActive = false;
+                    durationSuperPill = 0;
+                }
+                else
+                {
+                    durationSuperPill++;
+                }
             }
+            
             // Validations de fin de partie
             EndGameResult gameResult = EndGameResult.NotFinished;
             //Il reste des pills, la partie n'est pas finie.
@@ -236,7 +242,10 @@ namespace TP2PROF
                 Vector2i ghostPosition = new Vector2i(ghosts[i].Column, ghosts[i].Row);
                 if (pacmanPosition == ghostPosition&&SuperPillActive==false)
                 {
+                   
+                    
                     gameResult = EndGameResult.Losse;
+                    
                 }
             }
             //Il ne reste plus de pills, la partie est gagnée.
@@ -245,6 +254,7 @@ namespace TP2PROF
             {
                 gameResult = EndGameResult.Win;
             }
+            
             return gameResult;            
         }
         /// <summary>
