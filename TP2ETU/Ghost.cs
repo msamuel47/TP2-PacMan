@@ -92,13 +92,13 @@ namespace TP2PROF
     /// <param name="column">Représente la position en colonne à affecter au fantôme(>=0).</param>
     public Ghost(int row, int column)
     {
-       // Affectation de la position du fantôme  
-       // Ne pas oublier de lancer une exception si les paramètres sont invalides
+       // Affectation de la position du fantôme        
        try
             { 
                 position.Y = row;
                 position.X = column;
             }
+       //Si les valeurs sont négatives, une exception OutOfRange est attrapée, puis lancée.
        catch(IndexOutOfRangeException exception )
             {
                 Console.WriteLine(exception.ToString());
@@ -106,7 +106,6 @@ namespace TP2PROF
             }
 
             // Affectation de la propriété ghostId.
-            // Quelle serait la meilleure "valeur" à affecter ici???
             ghostId = nbGhostCreated;
 
             // Incrémenter ici la propriété servant à compter le nombre de fantômes créés
@@ -163,8 +162,6 @@ namespace TP2PROF
       }
 
             // ppoulin
-            // A décommenter lorsqu'il sera possible d'accéder aux propriétés Column et Row
-            // du fantôme
             ghostSprite.Position = new Vector2f(PacmanGame.DEFAULT_GAME_ELEMENT_WIDTH * Column,
                                                 PacmanGame.DEFAULT_GAME_ELEMENT_HEIGHT * Row)
                                    + ghostSprite.Origin;
@@ -178,7 +175,9 @@ namespace TP2PROF
     /// <param name="isSuperPillActive"></param>
     public void Update(Grid grid, Vector2i pacmanPosition, bool isSuperPillActive)
     {
-            delayUpdated++;            
+            //La valeur du délai est augmentée.
+            delayUpdated++; 
+            //Positions de la cage des fantômes.           
             int cageRow = 0;
             int cageColumn = 0;
             for (int i = 0; i < grid.Width; i++)
@@ -192,8 +191,10 @@ namespace TP2PROF
                     }
                 }
             }
+            //Si une super pill est active, et que le délai est respecté, le fantôme trouve la direction pour retourner à la cage.
             if (isSuperPillActive)
             {
+                isWeak = true;
                 if (delayUpdated == 8)
                 {
                     Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, cageColumn, cageRow);
@@ -201,8 +202,10 @@ namespace TP2PROF
                     delayUpdated = 0;
                 }
             }
-            if(isSuperPillActive==false)
+            //Sinon, le fantôme trouve la direction pour se diriger vers Pacman, si le délai est respescté.
+            else
             {
+                isWeak = false;
                 if (delayUpdated == 8)
                 {
                     Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, pacmanPosition.X, pacmanPosition.Y);
@@ -211,5 +214,6 @@ namespace TP2PROF
                 }
             }            
     }
+    //</nDionne>
   }
 }

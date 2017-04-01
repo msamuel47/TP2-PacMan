@@ -55,10 +55,11 @@ namespace TP2PROF
         //<nDionne>
         public static Direction FindShortestPath(Grid aGrid, int fromX, int fromY, int toX, int toY)
         {
+            //Initialisation du tableau des coûts.
             int[,] initialCosts = InitCosts(aGrid, fromX, fromY);
-
+            //Calcul du tableau des coûts.
             ComputeCosts(aGrid, fromX, fromY, toX, toY, initialCosts);
-
+            //Retour de la première direction à trouver.
             return RecurseFindDirection(initialCosts, toX, toY, fromX, fromY);
         }
         //</nDionne>

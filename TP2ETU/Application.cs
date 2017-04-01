@@ -8,7 +8,7 @@ namespace TP2PROF
 {
   class Application
   {
-    public const int TARGET_FPS = 20;
+    public const int TARGET_FPS = 30;
     private RenderWindow window = null;
     private PacmanGame game = null;
     private Keyboard.Key lastKeyPressed = Keyboard.Key.Space;

@@ -51,7 +51,7 @@ namespace TP2PROF
         private Pacman pacman;
 
         /// <summary>
-        /// Durée d'activation d'une superpastille (en secondes)
+        /// Durée d'activation d'une superpastille.
         /// </summary>
         private const int SUPERPILL_ACTIVATION_TIME = 150;
         int durationSuperPill;
@@ -78,12 +78,10 @@ namespace TP2PROF
         /// </summary>
         public PacmanGame()
         {
+            //Construction de la grille.
             grid = new Grid();
+            //Initialisation des fantômes.
             ghosts = new Ghost[NB_GHOSTS];
-
-
-
-
             // Initialisation SFML
             smallPillShape.Origin = new Vector2f((float)-(DEFAULT_GAME_ELEMENT_WIDTH - SMALL_PILL_RADIUS) / 2, -(float)(DEFAULT_GAME_ELEMENT_HEIGHT - SMALL_PILL_RADIUS) / 2);
             superPillShape.Origin = new Vector2f((float)-(DEFAULT_GAME_ELEMENT_WIDTH - SUPER_PILL_RADIUS) / 2, -(float)(DEFAULT_GAME_ELEMENT_HEIGHT - SUPER_PILL_RADIUS) / 2);
@@ -97,18 +95,16 @@ namespace TP2PROF
         public bool LoadGrid(string path)
         {
             bool retval = System.IO.File.Exists(path);
-
             if (retval)
             {
                 string fileContent = System.IO.File.ReadAllText(path);
                 grid.LoadFromMemory(fileContent);
-
-
                 // Si le chargement s'est correctement effectué
                 if (true == retval)
                 {
                     // On parcourt la grille et, avec la méthode GetGridElementAt
-                    // On trouve les positions où il y a des fantômes
+                    // On trouve les positions où il y a des fantômes et la position du Pacman. On les retire de la grille en
+                    //les "remplaçant"par les instances des classes correspondantes.
                     for (int i = 0; i < grid.Width; i++)
                     {
                         for (int j = 0; j < grid.Height; j++)
@@ -125,21 +121,8 @@ namespace TP2PROF
                             }
                         }
                     }
-                    // Quand on en trouve un, on crée le fantôme (new Ghost(...)) correspondant
-                    // et on l'enlève de la grille car dorénavant c'est l'objet de type Ghost
-                    // qui gère le déplacement
-
-
-
-                    // Ensuite, on crée le pacman à la position spécifiée par la grille.
-
-
-                    // Puis, comme pour les fantômes, on le retire de la grille. 
-                    // Sa position sera gérée par l'instance de la classe Pacman
-
                 }
             }
-
             return retval;
         }
         /// <summary>
@@ -150,8 +133,7 @@ namespace TP2PROF
         /// si le joueur a mangé toutes les pastilles ou EndGameResult.Losse si le joueur s'est fait
         /// mangé par un fantôme</returns>
         public EndGameResult Update(Keyboard.Key key)
-        {
-            
+        {            
             //Position du pacman, transformé en vecteur.
             Vector2i pacmanPosition = new Vector2i(pacman.Column, pacman.Row);
             // Déplacement du joueur
@@ -187,18 +169,11 @@ namespace TP2PROF
             for (int i = 0; i < ghosts.Length; i++)
             {
                 ghosts[i].Update(grid, pacmanPosition, SuperPillActive);
-            }
-            // Gestion des collisions avec le pacman
-
-
-
-
-            
+            }           
             // Vérification du ramassage d'une pastille
             if (grid.GetGridElementAt(pacman.Row, pacman.Column) == PacmanElement.Pill)
             {
-                grid.SetGridElementAt(pacman.Row, pacman.Column, 0);
-                
+                grid.SetGridElementAt(pacman.Row, pacman.Column, 0);                
             }
             // Vérification de l'activation d'un superpill
             if (grid.GetGridElementAt(pacman.Row, pacman.Column) == PacmanElement.SuperPill)
@@ -206,12 +181,10 @@ namespace TP2PROF
                 durationSuperPill = 0;
                 grid.SetGridElementAt(pacman.Row, pacman.Column, 0);
                 SuperPillActive = true;
-                
-
             }
+            //Vérification de la durée d'un superpill.
             if (SuperPillActive)
-            {
-                
+            {                
                 if (durationSuperPill == SUPERPILL_ACTIVATION_TIME)
                 {
                     SuperPillActive = false;
@@ -221,8 +194,7 @@ namespace TP2PROF
                 {
                     durationSuperPill++;
                 }
-            }
-            
+            }            
             // Validations de fin de partie
             EndGameResult gameResult = EndGameResult.NotFinished;
             //Il reste des pills, la partie n'est pas finie.
@@ -241,11 +213,8 @@ namespace TP2PROF
             {
                 Vector2i ghostPosition = new Vector2i(ghosts[i].Column, ghosts[i].Row);
                 if (pacmanPosition == ghostPosition&&SuperPillActive==false)
-                {
-                   
-                    
-                    gameResult = EndGameResult.Losse;
-                    
+                {                    
+                    gameResult = EndGameResult.Losse;                    
                 }
             }
             //Il ne reste plus de pills, la partie est gagnée.
@@ -253,8 +222,7 @@ namespace TP2PROF
             if (nbPillsRemaining == 0)
             {
                 gameResult = EndGameResult.Win;
-            }
-            
+            }            
             return gameResult;            
         }
         /// <summary>
@@ -283,7 +251,6 @@ namespace TP2PROF
         public void Draw(RenderWindow window)
         {
             // PPOULIN
-            // A DECOMMENTER LORSQUE LES CLASSES AURONT ÉTÉ CODÉES
             for (int row = 0; row < grid.Height; row++)
             {
                 for (int col = 0; col < grid.Width; col++)
@@ -323,5 +290,6 @@ namespace TP2PROF
                 pacman.Draw(window);
 
         }
+        //</nDionne>
     }
   }

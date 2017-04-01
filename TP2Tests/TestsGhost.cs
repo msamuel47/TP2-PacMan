@@ -5,12 +5,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TP2PROF;
 namespace TP2Tests
 {
-  /// <summary>
-  /// Description résumée pour TestsPacman
-  /// </summary>
-  [TestClass]
-  public class TestsGhost
-  {
+    /// <summary>
+    /// Description résumée pour TestsPacman
+    /// </summary>
+    [TestClass]
+    public class TestsGhost
+    {
         //<nDionne>
         /// <summary>
         /// Teste la création d'un fantôme
@@ -118,8 +118,8 @@ namespace TP2Tests
         /// méthode Move avec la bonne direction (West).
         /// </summary>
         [TestMethod]
-    public void TestMoveValid01()
-    {
+        public void TestMoveValid01()
+        {
             // Mise en place des données      
             Grid grid = new Grid();
             grid.LoadFromMemory(VALID_LEVEL_01);
@@ -134,9 +134,9 @@ namespace TP2Tests
             Assert.AreEqual(3, ghost.Column);
 
 
-      // Clean-up
-    }
-    const string VALID_LEVEL_02 = @"
+            // Clean-up
+        }
+        const string VALID_LEVEL_02 = @"
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1;
 1,1,0,4,4,4,4,4,4,4,1,4,4,4,4,4,4,4,4,1,1;
 1,1,5,1,1,4,1,1,1,4,1,4,1,1,1,4,1,1,5,1,1;
@@ -161,14 +161,14 @@ namespace TP2Tests
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1";
 
 
-    /// <summary>
-    /// Teste le déplacement valide du fantôme vers un pacman
-    /// Vous devez positionner le fantôme à côté du pacman et appeler la 
-    /// méthode Move avec la bonne direction pour "foncer" dans la pacman
-    /// </summary>
-    [TestMethod]
-    public void TestMoveValid02()
-    {
+        /// <summary>
+        /// Teste le déplacement valide du fantôme vers un pacman
+        /// Vous devez positionner le fantôme à côté du pacman et appeler la 
+        /// méthode Move avec la bonne direction pour "foncer" dans la pacman
+        /// </summary>
+        [TestMethod]
+        public void TestMoveValid02()
+        {
             // Mise en place des données      
             Grid grid = new Grid();
             grid.LoadFromMemory(VALID_LEVEL_02);
@@ -183,7 +183,8 @@ namespace TP2Tests
             Assert.AreEqual(ghost.Column, pacman.Column);
             Assert.AreEqual(ghost.Row, pacman.Row);
 
-      // Clean-up
+            // Clean-up
+        }
+        //</nDionne>
     }
-  }
 }
