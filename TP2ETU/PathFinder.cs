@@ -159,12 +159,12 @@ namespace TP2PROF
                 //On vérifie si la case au nord correspondrait à un prochain déplacement logique.
                 if (costs[targetY - 1, targetX] == costs[targetY, targetX] - 1)
                 {
-                    //On vérifie si la case au nord correspondrait au fantôme. La première direction est donc trouvée.
+                    //On vérifie si la case au nord correspondrait au fantôme. La première direction est donc trouvée (condition de fin).
                     if (costs[targetY - 1, targetX] == costs[fromY, fromX])
                     {
                         return Direction.South;
                     }
-                    //Sinon on refait appel à la méthode jusqu'à ce qu'on se situe à une case du départ (cases[fromY,fromX]).
+                    //Sinon on refait appel à la méthode jusqu'à ce qu'on se situe à une case du départ (cases[fromY,fromX]). C'est la récursivité de l'algorithme.
                     else
                     {
                         return RecurseFindDirection(costs, targetX, targetY - 1, fromX, fromY);

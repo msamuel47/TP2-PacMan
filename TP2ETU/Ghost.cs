@@ -7,6 +7,9 @@ using SFML.Graphics;
 using SFML.System;
 namespace TP2PROF
 {
+  /// <summary>
+  /// Classe d'un fantôme.
+  /// </summary>
   public class Ghost
   {
     //<nDionne>
@@ -171,38 +174,25 @@ namespace TP2PROF
     /// Met à jour la position du fantôme
     /// </summary>
     /// <param name="grid">Grille de référence. Utilisée pour ne pas que le fantôme passe au travers des murs</param>
-    /// <param name="pacmanPosition"></param>
-    /// <param name="isSuperPillActive"></param>
+    /// <param name="pacmanPosition">Position du pacman en Vector2i.</param>
+    /// <param name="isSuperPillActive">Booléen vérifiant si un super Pill est activé.</param>
     public void Update(Grid grid, Vector2i pacmanPosition, bool isSuperPillActive)
     {
             //La valeur du délai est augmentée.
             delayUpdated++; 
-            //Positions de la cage des fantômes.           
-            int cageRow = 0;
-            int cageColumn = 0;
-            for (int i = 0; i < grid.Width; i++)
-            {
-                for (int j = 0; j < grid.Height; j++)
-                {
-                    if (grid.GetGridElementAt(j, i) == PacmanElement.GhostCage)
-                    {
-                        cageRow = j;
-                        cageColumn = i;
-                    }
-                }
-            }
+           
             //Si une super pill est active, et que le délai est respecté, le fantôme trouve la direction pour retourner à la cage.
             if (isSuperPillActive)
             {
                 isWeak = true;
                 if (delayUpdated == 8)
                 {
-                    Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, cageColumn, cageRow);
+                    Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, grid.GhostCagePositionColumn, grid.GhostCagePositionRow);
                     Move(firstDirection, grid);
                     delayUpdated = 0;
                 }
             }
-            //Sinon, le fantôme trouve la direction pour se diriger vers Pacman, si le délai est respescté.
+            //Sinon, le fantôme trouve la direction pour se diriger vers Pacman, si le délai est respecté.
             else
             {
                 isWeak = false;

@@ -10,6 +10,9 @@ using SFML.Window;
 
 namespace TP2PROF
 {
+    /// <summary>
+    /// Classe d'une grille de jeu.
+    /// </summary>
     public class Grid
     {
         //<SamuelV>
@@ -17,16 +20,11 @@ namespace TP2PROF
         /// Grille logique du jeu.
         /// Tableau 2D de PacmanElement
         /// </summary>
-        private PacmanElement[,] elements = null;
-
-        //<SamuelV>
+        private PacmanElement[,] elements = null;        
         /// <summary>
         /// Position de la cage des fantômes
         /// </summary>
         public Vector2i ghostCagePosition;
-
-        // A compléter
-
         //<SamuelV>
         /// <summary>
         /// Accesseur du numéro de la ligne où se trouve la cage à fantômes
@@ -35,6 +33,7 @@ namespace TP2PROF
         public int GhostCagePositionRow
         {
             get { return ghostCagePosition.Y; }
+            set { ghostCagePosition.Y = value; }
         }
 
 
@@ -46,6 +45,7 @@ namespace TP2PROF
         public int GhostCagePositionColumn
         {
             get { return ghostCagePosition.X; }
+            set { ghostCagePosition.X = value; }
         }
         //<SamuelV>
         /// <summary>
@@ -102,6 +102,7 @@ namespace TP2PROF
         public Grid()
         {
             elements = new PacmanElement[22, 21];
+            
         }
        
         //<SamuelV>
@@ -181,6 +182,8 @@ namespace TP2PROF
                         }
                         if (converted2DArray[i, j] == 6)
                         {
+                            GhostCagePositionColumn = i;
+                            GhostCagePositionRow = j;
                             ghostCageCount++;
                         }
                         

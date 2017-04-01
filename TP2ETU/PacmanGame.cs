@@ -9,6 +9,9 @@ using SFML.System;
 using SFML.Audio;
 namespace TP2PROF
 {
+    /// <summary>
+    /// Classe d'une partie de Pacman.
+    /// </summary>
     public class PacmanGame
     {
         //<nDionne>
@@ -32,7 +35,7 @@ namespace TP2PROF
         /// Hauteur de rendu d'un élément de jeu
         /// </summary>
         public const int DEFAULT_GAME_ELEMENT_WIDTH = 20;
-
+       
         /// <summary>
         /// La grille principale de jeu. Elle est créée dans la méthode LoadGrid
         /// </summary>
@@ -82,6 +85,7 @@ namespace TP2PROF
             grid = new Grid();
             //Initialisation des fantômes.
             ghosts = new Ghost[NB_GHOSTS];
+            
             // Initialisation SFML
             smallPillShape.Origin = new Vector2f((float)-(DEFAULT_GAME_ELEMENT_WIDTH - SMALL_PILL_RADIUS) / 2, -(float)(DEFAULT_GAME_ELEMENT_HEIGHT - SMALL_PILL_RADIUS) / 2);
             superPillShape.Origin = new Vector2f((float)-(DEFAULT_GAME_ELEMENT_WIDTH - SUPER_PILL_RADIUS) / 2, -(float)(DEFAULT_GAME_ELEMENT_HEIGHT - SUPER_PILL_RADIUS) / 2);
@@ -169,7 +173,8 @@ namespace TP2PROF
             for (int i = 0; i < ghosts.Length; i++)
             {
                 ghosts[i].Update(grid, pacmanPosition, SuperPillActive);
-            }           
+            }
+            
             // Vérification du ramassage d'une pastille
             if (grid.GetGridElementAt(pacman.Row, pacman.Column) == PacmanElement.Pill)
             {
@@ -193,6 +198,16 @@ namespace TP2PROF
                 else
                 {
                     durationSuperPill++;
+                }
+                //Lorsque Pacman mange un fantôme, celui-ci retourne directement dans la cage.
+                for (int i = 0; i < ghosts.Length; i++)
+                {
+                    Vector2i ghostPosition = new Vector2i(ghosts[i].Column, ghosts[i].Row);
+                    if (pacmanPosition == ghostPosition)
+                    {
+                        ghosts[i].Column = grid.GhostCagePositionColumn;
+                        ghosts[i].Row = grid.GhostCagePositionRow;
+                    }
                 }
             }            
             // Validations de fin de partie
