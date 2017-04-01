@@ -181,7 +181,7 @@ namespace TP2PROF
             {
                 if (costs[targetY + 1, targetX] == costs[targetY, targetX] - 1)
                 {
-                    if (costs[targetY + 1, targetX] == 0)
+                    if (costs[targetY + 1, targetX] == costs[fromY,fromX])
                     {
                         return Direction.North;
                     }
@@ -200,7 +200,7 @@ namespace TP2PROF
             {
                 if (costs[targetY, targetX - 1] == costs[targetY, targetX] - 1)
                 {
-                    if (costs[targetY, targetX - 1] == 0)
+                    if (costs[targetY, targetX - 1] == costs[fromY,fromX])
                     {
                         return Direction.East;
                     }
@@ -219,7 +219,7 @@ namespace TP2PROF
             {
                 if (costs[targetY, targetX + 1] == costs[targetY, targetX] - 1)
                 {
-                    if (costs[targetY, targetX + 1] == 0)
+                    if (costs[targetY, targetX + 1] == costs[fromY,fromX])
                     {
                         return Direction.West;
                     }
