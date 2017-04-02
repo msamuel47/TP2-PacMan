@@ -185,7 +185,7 @@ namespace TP2PROF
             if (isSuperPillActive)
             {
                 isWeak = true;
-                if (delayUpdated == 8)
+                if (delayUpdated == Application.TARGET_FPS)
                 {
                     Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, grid.GhostCagePositionColumn, grid.GhostCagePositionRow);
                     Move(firstDirection, grid);
@@ -196,7 +196,7 @@ namespace TP2PROF
             else
             {
                 isWeak = false;
-                if (delayUpdated == 8)
+                if (delayUpdated == Application.TARGET_FPS)
                 {
                     Direction firstDirection = PathFinder.FindShortestPath(grid, Column, Row, pacmanPosition.X, pacmanPosition.Y);
                     Move(firstDirection, grid);

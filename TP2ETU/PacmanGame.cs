@@ -56,7 +56,7 @@ namespace TP2PROF
         /// <summary>
         /// Durée d'activation d'une superpastille.
         /// </summary>
-        private const int SUPERPILL_ACTIVATION_TIME = 150;
+        private const int SUPERPILL_ACTIVATION_TIME = 5;
         int durationSuperPill;
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace TP2PROF
             //Vérification de la durée d'un superpill.
             if (SuperPillActive)
             {                
-                if (durationSuperPill == SUPERPILL_ACTIVATION_TIME)
+                if (durationSuperPill == SUPERPILL_ACTIVATION_TIME*Application.TARGET_FPS)
                 {
                     SuperPillActive = false;
                     durationSuperPill = 0;
