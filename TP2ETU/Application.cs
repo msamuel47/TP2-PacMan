@@ -42,14 +42,16 @@ namespace TP2PROF
       if(true == game.LoadGrid("Levels/level1.txt"))
       {
         window.SetActive();
-        while ((lastKeyPressed != Keyboard.Key.Escape) && window.IsOpen && (game.Update(lastKeyPressed) == EndGameResult.NotFinished))
-        {
-          
-          window.Clear(Color.Black);
-          window.DispatchEvents();
-          game.Draw(window);
-          window.Display();
-        }
+                while ((lastKeyPressed != Keyboard.Key.Escape) && window.IsOpen && (game.Update(lastKeyPressed) == EndGameResult.NotFinished))
+                {
+
+                    window.Clear(Color.Black);
+                    window.DispatchEvents();
+                    game.Draw(window);
+                    window.Display();
+
+                }
+               
       }
       else
       {

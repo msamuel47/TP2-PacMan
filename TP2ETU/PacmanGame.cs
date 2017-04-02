@@ -145,6 +145,7 @@ namespace TP2PROF
             {
                 if (grid.GetGridElementAt(pacman.Row, pacman.Column - 1) != PacmanElement.Wall)
                 {
+                   
                     pacman.Column--;
                 }
             }
@@ -152,6 +153,7 @@ namespace TP2PROF
             {
                 if (grid.GetGridElementAt(pacman.Row, pacman.Column + 1) != PacmanElement.Wall)
                 {
+                    
                     pacman.Column++;
                 }
             }
@@ -159,6 +161,7 @@ namespace TP2PROF
             {
                 if (grid.GetGridElementAt(pacman.Row - 1, pacman.Column) != PacmanElement.Wall)
                 {
+                    
                     pacman.Row--;
                 }
             }
@@ -166,6 +169,7 @@ namespace TP2PROF
             {
                 if (grid.GetGridElementAt(pacman.Row + 1, pacman.Column) != PacmanElement.Wall)
                 {
+                  
                     pacman.Row++;
                 }
             }
@@ -178,11 +182,15 @@ namespace TP2PROF
             // Vérification du ramassage d'une pastille
             if (grid.GetGridElementAt(pacman.Row, pacman.Column) == PacmanElement.Pill)
             {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer("Assets/pacman_chomp.wav");
+                player.Play();
                 grid.SetGridElementAt(pacman.Row, pacman.Column, 0);                
             }
             // Vérification de l'activation d'un superpill
             if (grid.GetGridElementAt(pacman.Row, pacman.Column) == PacmanElement.SuperPill)
             {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer("Assets/pacman_chomp.wav");
+                player.Play();
                 durationSuperPill = 0;
                 grid.SetGridElementAt(pacman.Row, pacman.Column, 0);
                 SuperPillActive = true;
@@ -205,6 +213,8 @@ namespace TP2PROF
                     Vector2i ghostPosition = new Vector2i(ghosts[i].Column, ghosts[i].Row);
                     if (pacmanPosition == ghostPosition)
                     {
+                        System.Media.SoundPlayer player = new System.Media.SoundPlayer("Assets/pacman_eatghost.wav");
+                    player.Play();
                         ghosts[i].Column = grid.GhostCagePositionColumn;
                         ghosts[i].Row = grid.GhostCagePositionRow;
                     }
@@ -228,7 +238,8 @@ namespace TP2PROF
             {
                 Vector2i ghostPosition = new Vector2i(ghosts[i].Column, ghosts[i].Row);
                 if (pacmanPosition == ghostPosition&&SuperPillActive==false)
-                {                    
+                {
+                   
                     gameResult = EndGameResult.Losse;                    
                 }
             }
