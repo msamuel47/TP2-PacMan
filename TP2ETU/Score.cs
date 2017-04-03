@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TP2PROF
 {
+    //<sVincent>
     public class Score
     {
         private static Score instance = null;
@@ -47,4 +48,5 @@ namespace TP2PROF
         }
 
     }
+    //</sVincent>
 }
